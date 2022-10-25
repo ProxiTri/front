@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --jaune: #FFD970;
+  --blue: #026AAF;
+}
+* {
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+ul li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}

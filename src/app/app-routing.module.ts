@@ -8,6 +8,9 @@ import {LogoComponent} from "./header/menu/logo/logo.component";
 import {NavigationComponent} from "./header/menu/navigation/navigation.component";
 import {ArticlesComponent} from "./homepage/articles/articles.component";
 import {SliderComponent} from "./homepage/slider/slider.component";
+import {PollutionComponent} from "./pollution/pollution.component";
+import {GainsComponent} from "./gains/gains.component";
+import {QrCodeComponent} from "./qr-code/qr-code.component";
 
 const routes: Routes = [
   // HOME
@@ -24,10 +27,24 @@ const routes: Routes = [
 
   // MAP
   {
+    path: 'pollution',
+    component: PollutionComponent
+  },
+  //POLUTION
+  {
     path: 'map',
     component: MapComponent
+  },
+  //GAINS
+  {
+    path: 'gains',
+    component: GainsComponent
+  },
+  //QR CODE
+  {
+    path: 'qr-code',
+    component: QrCodeComponent
   }
-
 
 
 ];
