@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { link }
 
 @Component({
   selector: 'app-map',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  constructor() {
 
-  constructor() { }
+  }
 
   ngOnInit(): void {
+    console.log('cc')
   }
 
 }
