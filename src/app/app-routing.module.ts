@@ -25,12 +25,12 @@ const routes: Routes = [
     component: LoginComponent
   },
 
-  // MAP
+  //POLUTION
   {
     path: 'pollution',
     component: PollutionComponent
   },
-  //POLUTION
+  // MAP
   {
     path: 'map',
     component: MapComponent
