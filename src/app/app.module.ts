@@ -50,7 +50,9 @@ import { QrCodeComponent } from './qr-code/qr-code.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

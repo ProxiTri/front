@@ -1,14 +1,23 @@
 .map-container {
   margin-top: 1rem;
   height: 80vh;
-  width: 98%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .sidebar {
+    width: 10%;
+    background-color: red;
+    height: 100%;
+  }
+  .map-frame {
+    width: 90%;
+    border: 2px solid black;
+    height: 100%;
+  }
 }
-
-.map-frame {
-  border: 2px solid black;
-  height: 100%;
-}
-
 #map {
   height: 100%;
 }
+
+
