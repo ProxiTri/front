@@ -22,7 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { InfosComponent } from './pollution/infos/infos.component';
 import { FooterComponent } from './footer/footer.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
-import { SwiperModule } from 'swiper/angular';
+import { DemoDirective } from './demo.directive';
 
 @NgModule({
   declarations: [
@@ -46,11 +46,11 @@ import { SwiperModule } from 'swiper/angular';
     InfosComponent,
     FooterComponent,
     QrCodeComponent,
+    DemoDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SwiperModule
   ],
   providers: [
 
