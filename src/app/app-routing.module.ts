@@ -38,7 +38,8 @@ const routes: Routes = [
   //GAINS
   {
     path: 'gains',
-    component: GainsComponent
+    component: GainsComponent,
+    loadChildren: () => import('./gains/gains.component').then(m => m.GainsComponent)
   },
   //QR CODE
   {
