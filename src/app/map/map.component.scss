@@ -4,11 +4,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  .pointerSize{
+    width: 20%!important;
+  }
   .sidebar {
     padding: .5rem;
-      text-align: left;
+
       font-weight: 500;
-    width: 14%;
+    width: 16%;
     background-color: white;
     box-shadow: rgba(0, 0, 0.4, 0) 2px 4px 0px, rgba(0, 0, 0.3, 0) 7px 13px -3px 0px, rgba(0, 0, 0.2, 0) 0px -3px 0px inset;
     height: 100%;
@@ -20,10 +23,12 @@
       padding: 1rem;
       border-radius: 2rem;
       border: none;
-      background-color: #e1d4b0;
+      background-color: #F2F2F2;
       width: 100%;
+      font-size: 1rem;
     }
     .btnView {
+      cursor: pointer;
       width: 100%;
       font-size: 1rem;
       padding: .8rem;
@@ -31,10 +36,20 @@
       border: none;
       color: white;
       margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      img {
+        width: 35px;
+      }
+    }
+    .btnView:hover{
+      opacity: 70%;
+      transition: .5s;
     }
   }
   .map-frame {
-    width: 86%;
+    width: 84%;
     height: 100%;
   }
 }
