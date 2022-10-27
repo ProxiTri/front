@@ -12,7 +12,7 @@ export class DemoDirective {
   imageChange() {
     let src: any = this.el.nativeElement.src;
     let prev: any = document.getElementById("preview");
-    // console.log(prev.src)
+    // console.log(prev)
     prev.src = src;
     let imageSlide = document.getElementsByClassName("img-slide");
     for (let i = 0; i < imageSlide.length; i++) {
