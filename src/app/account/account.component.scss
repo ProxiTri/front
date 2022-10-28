@@ -1,0 +1,12 @@
+.bottom-account{
+  display: flex;
+  width: 100%;
+
+  & :first-child{
+    width: 50%;
+  }
+
+  & app-card{
+    width: 40%;
+  }
+}

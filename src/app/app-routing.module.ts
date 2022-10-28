@@ -11,6 +11,8 @@ import {SliderComponent} from "./homepage/slider/slider.component";
 import {PollutionComponent} from "./pollution/pollution.component";
 import {GainsComponent} from "./gains/gains.component";
 import {QrCodeComponent} from "./qr-code/qr-code.component";
+import {AccountComponent} from "./account/account.component";
+import {ActuComponent} from "./account/actu/actu.component";
 
 const routes: Routes = [
   // HOME
@@ -44,6 +46,16 @@ const routes: Routes = [
   {
     path: 'qr-code',
     component: QrCodeComponent
+  },
+  //ACCOUNT
+  {
+    path: "account",
+    component: AccountComponent
+  },
+  //ACTU
+  {
+    path: "actu",
+    component: ActuComponent
   }
 
 
