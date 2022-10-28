@@ -1,13 +1,20 @@
 .container-astuces {
-  margin: 0 0 150px 0;
   display: flex;
   flex-direction: column;
   // width: 50%;
+
+  & .title-astuces{
+    font-size: 40px;
+  }
 
   & .bottom-astuces {
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+    & img.img-astuces {
+      width: 20%;
+    }
 
     & p.text-astuces {
       margin-left: 15px;
@@ -18,8 +25,10 @@
     display: flex;
 
     & .astuces-slide {
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      margin-left: 15px;
       border-radius: 50px;
       background-color: #D9D9D9;
     }

@@ -1,11 +1,15 @@
 .top-account {
   display: flex;
-  padding: 72px 0;
+  padding: 72px 0 100px;
 
   & .left-top {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
+    & h1{
+      font-size: 35px;
+    }
   }
 
   & .actu-img-top {
