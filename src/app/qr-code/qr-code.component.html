@@ -1,1 +1,20 @@
-<p>qr-code works!</p>
+<barcode-scanner-livestream
+  [type]="['ean','upc']"
+  (valueChanges)="onValueChanges($event)"
+></barcode-scanner-livestream>
+<div [hidden]="!data">
+  {{ data }}
+</div>
+<div *ngIf="productAr != null && productAr!= undefined">
+  {{ productAr.marque }}
+  {{ productAr.packaging }}
+  <img src="{{ productAr.image }}">
+
+</div>
+<ngx-barcode [bc-display-value]="true"></ngx-barcode>
+
+<h1>Mon produit</h1>
+
+<li>
+
+</li>

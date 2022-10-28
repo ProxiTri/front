@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,10 +19,15 @@ import { ChatComponent } from './account/chat/chat.component';
 import { CardComponent } from './account/card/card.component';
 import { MapComponent } from './map/map.component';
 import { PollutionComponent } from './pollution/pollution.component';
+import { QrCodeComponent } from './qr-code/qr-code.component';
+
 import { LoginComponent } from './login/login.component';
 import { InfosComponent } from './pollution/infos/infos.component';
 import { FooterComponent } from './footer/footer.component';
-import { QrCodeComponent } from './qr-code/qr-code.component';
+import { DemoDirective } from './demo.directive';
+import {NgxBarcodeModule} from "ngx-barcode";
+import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
+
 
 @NgModule({
   declarations: [
@@ -44,13 +50,19 @@ import { QrCodeComponent } from './qr-code/qr-code.component';
     LoginComponent,
     InfosComponent,
     FooterComponent,
-    QrCodeComponent,
+    DemoDirective,
+    QrCodeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BarcodeScannerLivestreamModule,
+    NgxBarcodeModule,
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

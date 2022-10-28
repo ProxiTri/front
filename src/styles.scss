@@ -1,6 +1,9 @@
 :root {
   --jaune: #FFD970;
   --blue: #026AAF;
+  --vert: #0CAD7D;
+  --gris : #F5EFEF;
+  --jaune2 : #FFDA26;
 }
 * {
   margin: 0 auto;
@@ -14,4 +17,32 @@ a {
 }
 body {
   font-family: 'Roboto', sans-serif;
+}
+
+// BG COLOR
+
+.bg-green {
+  background-color: var(--vert);
+}
+.bg-yellow{
+  background-color: var(--jaune);
+}
+.bg-blue {
+  background-color: var(--blue);
+}
+.bg-grey {
+  background-color: var(--gris);
+}
+.bg-white {
+  background-color: #d7c3c3;
+}
+
+
+// TEXT COLOR
+
+.text-white {
+  color: white!important;
+}
+.text-black {
+  color: black!important;
 }
