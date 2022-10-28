@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as L from 'leaflet';
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -11,14 +12,11 @@ import * as L from 'leaflet';
 
 
 export class MapComponent implements OnInit {
-
-
-  constructor(private http: HttpClient) {
-  }
-
+  constructor(private http: HttpClient) {}
   map: any;
 
   ngOnInit() {
+    // @ts-ignore
     this.map = L.map('map').setView([46.160329, -1.151139], 14);
     let auth_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCJ9.eyJpYXQiOjE2NjY5NTA1NzcsImV4cCI6MTY2NzAzNjk3Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiY29udGFjdEBhcGktcHJveGl0cmkuZnIiLCJpcCI6IjE3Mi4xOC4wLjIiLCJ1c2VySWQiOjN9.mHVznOg-ene0icm2Y4d6Z_4imVF2yURwv6cxnoWFIpuvVGLD0GCRUSPdqVeA6rBfTCl0MYFbLgagmzvwczwnHOSmMovnxEdwvwl_GQFZDayPVjy2bFXXR2AKi5iXmu7IPM70mICD9JvEgD6ooHQqWQyn46x1c907DOvVZWfD0sXzaJc-rwc0C36h-S0r07nQ4XlwVAJEcnnBl8Hl24vgpQg-VBw03yURhCs2fm-wM4LE7xaz5KN-ThIKWxnDe0RoOO_5mYPjHcjciI7P12-1oUfYiiCBDUUxnzpP95TTTFImqkXf3fyzYetA86H8eB9DXw0JrglGJqXYgTydwOCXueDkWtuD8VpYHU0K9JyTXDBZv7zbDxXAKkP25EvPLy7PiOQymA9YGzboWeblBiKzrJsTcPx05hfqdxFRMj9i6oesATc4TYz5FHRzRT3q9IraOSWZbvGmFd4-HnNeW8DEl-rA2g3tyZlaaWGQGwNX82P2OHCIy4NRnw50efBKgWXpejGOTx37b_J0zdSh-PNPw8U6Wm-GF-qZvQYhFXe80UTNqlgG-jlQzYoQntraHzsw-QT86MbtLJerjtwJHlh04V0ARRqFw-eiFGLUXHnyWM2k49K2hVwFOQeMzB_MxDHdSWohw0IvvkyL4iRO1-MUU6vYK0cYQGI4uRMosRPnHMU";
     const headers = new HttpHeaders({
@@ -72,7 +70,6 @@ export class MapComponent implements OnInit {
     })
 
   }
-
 
   toutes() {
     let auth_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCJ9.eyJpYXQiOjE2NjY5NTA1NzcsImV4cCI6MTY2NzAzNjk3Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiY29udGFjdEBhcGktcHJveGl0cmkuZnIiLCJpcCI6IjE3Mi4xOC4wLjIiLCJ1c2VySWQiOjN9.mHVznOg-ene0icm2Y4d6Z_4imVF2yURwv6cxnoWFIpuvVGLD0GCRUSPdqVeA6rBfTCl0MYFbLgagmzvwczwnHOSmMovnxEdwvwl_GQFZDayPVjy2bFXXR2AKi5iXmu7IPM70mICD9JvEgD6ooHQqWQyn46x1c907DOvVZWfD0sXzaJc-rwc0C36h-S0r07nQ4XlwVAJEcnnBl8Hl24vgpQg-VBw03yURhCs2fm-wM4LE7xaz5KN-ThIKWxnDe0RoOO_5mYPjHcjciI7P12-1oUfYiiCBDUUxnzpP95TTTFImqkXf3fyzYetA86H8eB9DXw0JrglGJqXYgTydwOCXueDkWtuD8VpYHU0K9JyTXDBZv7zbDxXAKkP25EvPLy7PiOQymA9YGzboWeblBiKzrJsTcPx05hfqdxFRMj9i6oesATc4TYz5FHRzRT3q9IraOSWZbvGmFd4-HnNeW8DEl-rA2g3tyZlaaWGQGwNX82P2OHCIy4NRnw50efBKgWXpejGOTx37b_J0zdSh-PNPw8U6Wm-GF-qZvQYhFXe80UTNqlgG-jlQzYoQntraHzsw-QT86MbtLJerjtwJHlh04V0ARRqFw-eiFGLUXHnyWM2k49K2hVwFOQeMzB_MxDHdSWohw0IvvkyL4iRO1-MUU6vYK0cYQGI4uRMosRPnHMU";
@@ -254,6 +251,21 @@ export class MapComponent implements OnInit {
         }
       });
     })
+  }
+
+
+  locate() {
+    navigator.geolocation.getCurrentPosition((position:any) => {
+      this.map.flyTo([position.coords.latitude, position.coords.longitude])
+      let iconPlace = L.icon({
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png',
+      });
+      L.marker([position.coords.latitude, position.coords.longitude],
+        {icon: iconPlace})
+        .addTo(this.map);
+    },(error:any) => {
+      alert(error.message)
+    });
   }
 }
 
