@@ -14,10 +14,12 @@
     <br>
     <br>
     <h3>Aller à la benne la plus proche :</h3>
-    <button class="btnView bg-yellow text-black">Démarrer l'itinairaire <img src="assets/img/icons8-location-96.png" alt=""></button>
+    <button (click)="locate2()" class="btnView bg-blue">Localiser moi !</button>
+    <input class="search-loca" type="text"  value="" placeholder="Depart">
+    <input class="search-loca" type="text" value="" placeholder="Arivée">
+    <button class="btnView bg-yellow text-black" (click)="route([49.443232, 1.099971],  [46.1667, -1.15])">Démarrer l'itinairaire <img src="assets/img/icons8-location-96.png" alt=""></button>
   </div>
   <div class="map-frame">
-
     <div id="map"><button (click)="locate()" class="location">Localiser moi !</button></div>
   </div>
 </div>

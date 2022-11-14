@@ -1,5 +1,5 @@
 .map-container {
-  height: 83vh;
+  height: 78vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -9,7 +9,8 @@
   }
   .sidebar {
     padding: .5rem;
-
+    max-height: 100%;
+    overflow: auto;
       font-weight: 500;
     width: 16%;
     background-color: white;
@@ -191,3 +192,13 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
+// SEARCH ITINERARY
+
+.search-loca {
+  border-radius: .3rem;
+  padding: .8rem;
+  border: none;
+  background-color: var(--gris);
+  margin-bottom: 1rem;
+  width: 100%;
+}

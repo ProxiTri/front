@@ -2,7 +2,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as L from 'leaflet';
-
+import 'leaflet-routing-machine';
 
 @Component({
   selector: 'app-map',
@@ -14,14 +14,20 @@ import * as L from 'leaflet';
 export class MapComponent implements OnInit {
   constructor(private http: HttpClient) {}
   map: any;
+  auth_token = '';
+  message: any;
+
 
   ngOnInit() {
+    this.http.post<any>('https://api-proxitri.alexis-briet.fr/api/login', { username: "alexis.briet2003@gmail.com",
+      password: "azerty" }).subscribe(data => {
+      this.auth_token = data.token;
+    })
     // @ts-ignore
     this.map = L.map('map').setView([46.160329, -1.151139], 14);
-    let auth_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCJ9.eyJpYXQiOjE2NjY5NTA1NzcsImV4cCI6MTY2NzAzNjk3Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiY29udGFjdEBhcGktcHJveGl0cmkuZnIiLCJpcCI6IjE3Mi4xOC4wLjIiLCJ1c2VySWQiOjN9.mHVznOg-ene0icm2Y4d6Z_4imVF2yURwv6cxnoWFIpuvVGLD0GCRUSPdqVeA6rBfTCl0MYFbLgagmzvwczwnHOSmMovnxEdwvwl_GQFZDayPVjy2bFXXR2AKi5iXmu7IPM70mICD9JvEgD6ooHQqWQyn46x1c907DOvVZWfD0sXzaJc-rwc0C36h-S0r07nQ4XlwVAJEcnnBl8Hl24vgpQg-VBw03yURhCs2fm-wM4LE7xaz5KN-ThIKWxnDe0RoOO_5mYPjHcjciI7P12-1oUfYiiCBDUUxnzpP95TTTFImqkXf3fyzYetA86H8eB9DXw0JrglGJqXYgTydwOCXueDkWtuD8VpYHU0K9JyTXDBZv7zbDxXAKkP25EvPLy7PiOQymA9YGzboWeblBiKzrJsTcPx05hfqdxFRMj9i6oesATc4TYz5FHRzRT3q9IraOSWZbvGmFd4-HnNeW8DEl-rA2g3tyZlaaWGQGwNX82P2OHCIy4NRnw50efBKgWXpejGOTx37b_J0zdSh-PNPw8U6Wm-GF-qZvQYhFXe80UTNqlgG-jlQzYoQntraHzsw-QT86MbtLJerjtwJHlh04V0ARRqFw-eiFGLUXHnyWM2k49K2hVwFOQeMzB_MxDHdSWohw0IvvkyL4iRO1-MUU6vYK0cYQGI4uRMosRPnHMU";
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${this.auth_token}`
     });
     const requestOptions = {headers: headers};
 
@@ -72,10 +78,9 @@ export class MapComponent implements OnInit {
   }
 
   toutes() {
-    let auth_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCJ9.eyJpYXQiOjE2NjY5NTA1NzcsImV4cCI6MTY2NzAzNjk3Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiY29udGFjdEBhcGktcHJveGl0cmkuZnIiLCJpcCI6IjE3Mi4xOC4wLjIiLCJ1c2VySWQiOjN9.mHVznOg-ene0icm2Y4d6Z_4imVF2yURwv6cxnoWFIpuvVGLD0GCRUSPdqVeA6rBfTCl0MYFbLgagmzvwczwnHOSmMovnxEdwvwl_GQFZDayPVjy2bFXXR2AKi5iXmu7IPM70mICD9JvEgD6ooHQqWQyn46x1c907DOvVZWfD0sXzaJc-rwc0C36h-S0r07nQ4XlwVAJEcnnBl8Hl24vgpQg-VBw03yURhCs2fm-wM4LE7xaz5KN-ThIKWxnDe0RoOO_5mYPjHcjciI7P12-1oUfYiiCBDUUxnzpP95TTTFImqkXf3fyzYetA86H8eB9DXw0JrglGJqXYgTydwOCXueDkWtuD8VpYHU0K9JyTXDBZv7zbDxXAKkP25EvPLy7PiOQymA9YGzboWeblBiKzrJsTcPx05hfqdxFRMj9i6oesATc4TYz5FHRzRT3q9IraOSWZbvGmFd4-HnNeW8DEl-rA2g3tyZlaaWGQGwNX82P2OHCIy4NRnw50efBKgWXpejGOTx37b_J0zdSh-PNPw8U6Wm-GF-qZvQYhFXe80UTNqlgG-jlQzYoQntraHzsw-QT86MbtLJerjtwJHlh04V0ARRqFw-eiFGLUXHnyWM2k49K2hVwFOQeMzB_MxDHdSWohw0IvvkyL4iRO1-MUU6vYK0cYQGI4uRMosRPnHMU";
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${this.auth_token}`
     });
     const requestOptions = {headers: headers};
 
@@ -124,10 +129,9 @@ export class MapComponent implements OnInit {
   }
 
   plastic() {
-    let auth_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCJ9.eyJpYXQiOjE2NjY5NTA1NzcsImV4cCI6MTY2NzAzNjk3Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiY29udGFjdEBhcGktcHJveGl0cmkuZnIiLCJpcCI6IjE3Mi4xOC4wLjIiLCJ1c2VySWQiOjN9.mHVznOg-ene0icm2Y4d6Z_4imVF2yURwv6cxnoWFIpuvVGLD0GCRUSPdqVeA6rBfTCl0MYFbLgagmzvwczwnHOSmMovnxEdwvwl_GQFZDayPVjy2bFXXR2AKi5iXmu7IPM70mICD9JvEgD6ooHQqWQyn46x1c907DOvVZWfD0sXzaJc-rwc0C36h-S0r07nQ4XlwVAJEcnnBl8Hl24vgpQg-VBw03yURhCs2fm-wM4LE7xaz5KN-ThIKWxnDe0RoOO_5mYPjHcjciI7P12-1oUfYiiCBDUUxnzpP95TTTFImqkXf3fyzYetA86H8eB9DXw0JrglGJqXYgTydwOCXueDkWtuD8VpYHU0K9JyTXDBZv7zbDxXAKkP25EvPLy7PiOQymA9YGzboWeblBiKzrJsTcPx05hfqdxFRMj9i6oesATc4TYz5FHRzRT3q9IraOSWZbvGmFd4-HnNeW8DEl-rA2g3tyZlaaWGQGwNX82P2OHCIy4NRnw50efBKgWXpejGOTx37b_J0zdSh-PNPw8U6Wm-GF-qZvQYhFXe80UTNqlgG-jlQzYoQntraHzsw-QT86MbtLJerjtwJHlh04V0ARRqFw-eiFGLUXHnyWM2k49K2hVwFOQeMzB_MxDHdSWohw0IvvkyL4iRO1-MUU6vYK0cYQGI4uRMosRPnHMU";
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${this.auth_token}`
     });
     const requestOptions = {headers: headers};
 
@@ -158,10 +162,9 @@ export class MapComponent implements OnInit {
   }
 
   verre() {
-    let auth_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCJ9.eyJpYXQiOjE2NjY5NTA1NzcsImV4cCI6MTY2NzAzNjk3Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiY29udGFjdEBhcGktcHJveGl0cmkuZnIiLCJpcCI6IjE3Mi4xOC4wLjIiLCJ1c2VySWQiOjN9.mHVznOg-ene0icm2Y4d6Z_4imVF2yURwv6cxnoWFIpuvVGLD0GCRUSPdqVeA6rBfTCl0MYFbLgagmzvwczwnHOSmMovnxEdwvwl_GQFZDayPVjy2bFXXR2AKi5iXmu7IPM70mICD9JvEgD6ooHQqWQyn46x1c907DOvVZWfD0sXzaJc-rwc0C36h-S0r07nQ4XlwVAJEcnnBl8Hl24vgpQg-VBw03yURhCs2fm-wM4LE7xaz5KN-ThIKWxnDe0RoOO_5mYPjHcjciI7P12-1oUfYiiCBDUUxnzpP95TTTFImqkXf3fyzYetA86H8eB9DXw0JrglGJqXYgTydwOCXueDkWtuD8VpYHU0K9JyTXDBZv7zbDxXAKkP25EvPLy7PiOQymA9YGzboWeblBiKzrJsTcPx05hfqdxFRMj9i6oesATc4TYz5FHRzRT3q9IraOSWZbvGmFd4-HnNeW8DEl-rA2g3tyZlaaWGQGwNX82P2OHCIy4NRnw50efBKgWXpejGOTx37b_J0zdSh-PNPw8U6Wm-GF-qZvQYhFXe80UTNqlgG-jlQzYoQntraHzsw-QT86MbtLJerjtwJHlh04V0ARRqFw-eiFGLUXHnyWM2k49K2hVwFOQeMzB_MxDHdSWohw0IvvkyL4iRO1-MUU6vYK0cYQGI4uRMosRPnHMU";
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${this.auth_token}`
     });
     const requestOptions = {headers: headers};
 
@@ -191,10 +194,9 @@ export class MapComponent implements OnInit {
   }
 
   paper() {
-    let auth_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCJ9.eyJpYXQiOjE2NjY5NTA1NzcsImV4cCI6MTY2NzAzNjk3Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiY29udGFjdEBhcGktcHJveGl0cmkuZnIiLCJpcCI6IjE3Mi4xOC4wLjIiLCJ1c2VySWQiOjN9.mHVznOg-ene0icm2Y4d6Z_4imVF2yURwv6cxnoWFIpuvVGLD0GCRUSPdqVeA6rBfTCl0MYFbLgagmzvwczwnHOSmMovnxEdwvwl_GQFZDayPVjy2bFXXR2AKi5iXmu7IPM70mICD9JvEgD6ooHQqWQyn46x1c907DOvVZWfD0sXzaJc-rwc0C36h-S0r07nQ4XlwVAJEcnnBl8Hl24vgpQg-VBw03yURhCs2fm-wM4LE7xaz5KN-ThIKWxnDe0RoOO_5mYPjHcjciI7P12-1oUfYiiCBDUUxnzpP95TTTFImqkXf3fyzYetA86H8eB9DXw0JrglGJqXYgTydwOCXueDkWtuD8VpYHU0K9JyTXDBZv7zbDxXAKkP25EvPLy7PiOQymA9YGzboWeblBiKzrJsTcPx05hfqdxFRMj9i6oesATc4TYz5FHRzRT3q9IraOSWZbvGmFd4-HnNeW8DEl-rA2g3tyZlaaWGQGwNX82P2OHCIy4NRnw50efBKgWXpejGOTx37b_J0zdSh-PNPw8U6Wm-GF-qZvQYhFXe80UTNqlgG-jlQzYoQntraHzsw-QT86MbtLJerjtwJHlh04V0ARRqFw-eiFGLUXHnyWM2k49K2hVwFOQeMzB_MxDHdSWohw0IvvkyL4iRO1-MUU6vYK0cYQGI4uRMosRPnHMU";
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${this.auth_token}`
     });
     const requestOptions = {headers: headers};
 
@@ -224,10 +226,9 @@ export class MapComponent implements OnInit {
   }
 
   menage() {
-    let auth_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCJ9.eyJpYXQiOjE2NjY5NTA1NzcsImV4cCI6MTY2NzAzNjk3Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiY29udGFjdEBhcGktcHJveGl0cmkuZnIiLCJpcCI6IjE3Mi4xOC4wLjIiLCJ1c2VySWQiOjN9.mHVznOg-ene0icm2Y4d6Z_4imVF2yURwv6cxnoWFIpuvVGLD0GCRUSPdqVeA6rBfTCl0MYFbLgagmzvwczwnHOSmMovnxEdwvwl_GQFZDayPVjy2bFXXR2AKi5iXmu7IPM70mICD9JvEgD6ooHQqWQyn46x1c907DOvVZWfD0sXzaJc-rwc0C36h-S0r07nQ4XlwVAJEcnnBl8Hl24vgpQg-VBw03yURhCs2fm-wM4LE7xaz5KN-ThIKWxnDe0RoOO_5mYPjHcjciI7P12-1oUfYiiCBDUUxnzpP95TTTFImqkXf3fyzYetA86H8eB9DXw0JrglGJqXYgTydwOCXueDkWtuD8VpYHU0K9JyTXDBZv7zbDxXAKkP25EvPLy7PiOQymA9YGzboWeblBiKzrJsTcPx05hfqdxFRMj9i6oesATc4TYz5FHRzRT3q9IraOSWZbvGmFd4-HnNeW8DEl-rA2g3tyZlaaWGQGwNX82P2OHCIy4NRnw50efBKgWXpejGOTx37b_J0zdSh-PNPw8U6Wm-GF-qZvQYhFXe80UTNqlgG-jlQzYoQntraHzsw-QT86MbtLJerjtwJHlh04V0ARRqFw-eiFGLUXHnyWM2k49K2hVwFOQeMzB_MxDHdSWohw0IvvkyL4iRO1-MUU6vYK0cYQGI4uRMosRPnHMU";
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${this.auth_token}`
     });
     const requestOptions = {headers: headers};
 
@@ -253,7 +254,6 @@ export class MapComponent implements OnInit {
     })
   }
 
-
   locate() {
     navigator.geolocation.getCurrentPosition((position:any) => {
       this.map.flyTo([position.coords.latitude, position.coords.longitude])
@@ -267,6 +267,39 @@ export class MapComponent implements OnInit {
       alert(error.message)
     });
   }
+
+  locate2(){
+    navigator.geolocation.getCurrentPosition((position:any) => {
+      console.log(position.coords)
+    });
+  }
+
+  route(depart:any, arrivee:any) {
+    // @ts-ignore
+    L.Routing.control({
+      // @ts-ignore
+      router: L.Routing.osrmv1({
+        serviceUrl: 'http://router.project-osrm.org/route/v1/'
+      }),
+      showAlternatives: true,
+      lineOptions: {styles: [{color: '#242c81', weight: 7}]},
+      fitSelectedRoutes: false,
+      altLineOptions: {styles: [{color: '#ed6852', weight: 7}]},
+      show: false,
+      routeWhileDragging: true,
+      waypoints: [
+        L.latLng(depart),
+        L.latLng(arrivee)
+      ]
+    }).addTo(this.map);
+  }
+
+  receiveMessage(event: any) {
+    this.message = event
+    console.log(this.message)
+  }
+
+
 }
 
 
