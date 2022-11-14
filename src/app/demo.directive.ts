@@ -20,4 +20,18 @@ export class DemoDirective {
     }
     this.el.nativeElement.parentElement.classList.add("active");
   }
+
+  /*
+  astuceChange(){
+    let src: any = this.el.nativeElement.src;
+    let prev: any = document.getElementById("pagination");
+    console.log(this.el.nativeElement)
+    prev.src = src;
+    let imageSlide = document.getElementsByClassName("page");
+    for (let i = 0; i < imageSlide.length; i++) {
+      imageSlide[i].classList.remove("active")
+    }
+    this.el.nativeElement.parentElement.classList.add("active");
+  }
+   */
 }

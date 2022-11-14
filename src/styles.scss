@@ -2,19 +2,24 @@
   --jaune: #FFD970;
   --blue: #026AAF;
   --vert: #0CAD7D;
-  --gris : #F5EFEF;
-  --jaune2 : #FFDA26;
+  --gris: #F5EFEF;
+  --jaune2: #FFDA26;
+  --noir: #000000;
 }
+
 * {
   margin: 0 auto;
   box-sizing: border-box;
 }
+
 ul li {
   list-style: none;
 }
+
 a {
   text-decoration: none;
 }
+
 body {
   font-family: 'Roboto', sans-serif;
 }
@@ -24,15 +29,19 @@ body {
 .bg-green {
   background-color: var(--vert);
 }
-.bg-yellow{
+
+.bg-yellow {
   background-color: var(--jaune);
 }
+
 .bg-blue {
   background-color: var(--blue);
 }
+
 .bg-grey {
   background-color: var(--gris);
 }
+
 .bg-white {
   background-color: #d7c3c3;
 }
@@ -41,8 +50,19 @@ body {
 // TEXT COLOR
 
 .text-white {
-  color: white!important;
+  color: white !important;
 }
+
 .text-black {
-  color: black!important;
+  color: black !important;
 }
+
+// FONT
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+$roboto: 'Roboto', sans-serif;
+$thin: 100;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$bold: 700;

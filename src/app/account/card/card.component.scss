@@ -1,0 +1,38 @@
+.container-cards{
+  display: flex;
+  flex-direction: column;
+  // width: 50%;
+}
+.cards-account{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  // margin: 60px 0 100px;
+  // width: 100%;
+
+  & .top-cards{
+    display: flex;
+  }
+
+  & .bottom-cards{
+    display: flex;
+  }
+
+  & .cards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 160px;
+    height: 160px;
+    text-align: center;
+    border-radius: 15px;
+    color: #ffffff;
+    background-color: #0CAD7D;
+    margin: 0 0 15px 20px;
+    cursor: pointer;
+
+    & p{
+      margin-top: 20px;
+    }
+  }
+}
