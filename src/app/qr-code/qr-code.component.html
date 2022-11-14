@@ -1,20 +1,25 @@
+<div class="camera" [style.display]="toggle ? 'none' : 'flex'">
 <barcode-scanner-livestream
   [type]="['ean','upc']"
   (valueChanges)="onValueChanges($event)"
 ></barcode-scanner-livestream>
-<div [hidden]="!data">
-  {{ data }}
 </div>
-<div *ngIf="productAr != null && productAr!= undefined">
-  {{ productAr.marque }}
-  {{ productAr.packaging }}
+
+<button id="startButton" [style.display]="toggle ? 'flex' : 'none'" (click)="displayButton()">Scanner un produit</button>
+
+<div id="popup1" class="overlay" *ngIf="productAr != null && productAr!= undefined">
+  <h1>MON PRODUIT RECYCLABLE</h1>
+  NOM : {{ productAr.marque }} <br>
+  CATEGORIE : {{ productAr.packaging }} <br>
   <img src="{{ productAr.image }}">
 
 </div>
-<ngx-barcode [bc-display-value]="true"></ngx-barcode>
 
-<h1>Mon produit</h1>
 
-<li>
-
-</li>
+<div class="overlay" id="popup2" [style.display]="toggle3 ? 'flex' : 'none'">
+<div class="progress-spinner" role="progressbar">
+  <svg focusable="false" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100">
+    <circle cx="50%" cy="50%" r="45"></circle>
+  </svg>
+</div>
+</div>
