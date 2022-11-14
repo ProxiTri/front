@@ -25,8 +25,10 @@ import { LoginComponent } from './login/login.component';
 import { InfosComponent } from './pollution/infos/infos.component';
 import { FooterComponent } from './footer/footer.component';
 import { DemoDirective } from './demo.directive';
-import {NgxBarcodeModule} from "ngx-barcode";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { NgxBarcodeModule } from 'ngx-barcode';
 import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
     InfosComponent,
     FooterComponent,
     DemoDirective,
-    QrCodeComponent
+    QrCodeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,8 @@ import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
     HttpClientModule,
     BarcodeScannerLivestreamModule,
     NgxBarcodeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
 

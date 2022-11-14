@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {FormControl, ɵValue} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +9,20 @@ export class AuthService {
   baseUrl = 'https://api-proxitri.alexis-briet.fr/api/';
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string) {
+
+  login(username: ɵValue<FormControl<string | null>> | undefined, password: ɵValue<FormControl<string | null>> | undefined) {
     return this.http.post(this.baseUrl + 'login', { username, password }).subscribe((data:any) => {
       localStorage.setItem('token', data.token);
-      console.log(data.token);
-      console.log(this.decodeToken(data.token));
       sessionStorage.setItem('roles', this.decodeToken(data.token).roles);
       sessionStorage.setItem('username', this.decodeToken(data.token).username);
       sessionStorage.setItem('id', this.decodeToken(data.token).userId);
       sessionStorage.setItem('exp', this.decodeToken(data.token).exp);
+    });
+  }
+
+  register(email: ɵValue<FormControl<string | null>> | undefined, password: ɵValue<FormControl<string | null>> | undefined) {
+    return this.http.post(this.baseUrl + 'register', { email, password }).subscribe((data:any) => {
+      console.log(data)
     });
   }
 

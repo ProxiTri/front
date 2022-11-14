@@ -1,0 +1,18 @@
+<div class="bglogin" style='background: url("assets/img/img-slider-1.png")'>
+  <div class="whitebg">
+
+    <h1 class="title-login">Accéder à mon espace</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()" action="" class="loginForm" id="loginForm">
+
+      <input type="text" formControlName="mail" name="mail" placeholder="Email" class="inputLogin inputForm">
+
+      <input type="password" formControlName="password" name="password" placeholder="Mot de passe"
+             class="inputLogin inputForm">
+
+      <button>Envoyer</button>
+    </form>
+
+
+  </div>
+</div>
