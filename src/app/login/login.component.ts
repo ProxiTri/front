@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -15,17 +16,34 @@ export class LoginComponent implements OnInit {
   });
   data?: any;
 
-  constructor(private authS: AuthService) {
+  errorForm: string | undefined;
+
+  constructor(private authS: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
+    console.log(this.errorForm)
   }
 
   submitForm() {
-    this.data = this.authS.loginObs(this.loginForm.value.mail, this.loginForm.value.password).subscribe((data: any) => {
-      console.log(data);
-    }, error => {
-      console.log(error.error.message);
+    this.errorForm = '';
+    // @ts-ignore
+    document.querySelector('.login').disabled = true
+    setTimeout(() => {
+      // @ts-ignore
+      document.querySelector('.login').disabled = false
+    }, 1500);
+
+
+    this.data = this.authS.login(this.loginForm.value.mail, this.loginForm.value.password).subscribe((data: any) => {
+      localStorage.setItem('token', data.token);
+      sessionStorage.setItem('roles', this.authS.decodeToken(data.token).roles);
+      sessionStorage.setItem('username', this.authS.decodeToken(data.token).username);
+      sessionStorage.setItem('id', this.authS.decodeToken(data.token).userId);
+      sessionStorage.setItem('exp', this.authS.decodeToken(data.token).exp);
+      this.router.navigate(['/account']);
+    }, (error: { error: { message: string | undefined; }; }) => {
+      this.errorForm = error.error.message;
     });
   }
 }
