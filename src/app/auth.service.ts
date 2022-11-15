@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FormControl, ɵValue} from "@angular/forms";
+import {catchError, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,20 @@ export class AuthService {
     });
   }
 
+  loginObs(username: any, password: any): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'login', { username, password });
+  }
+
   register(email: ɵValue<FormControl<string | null>> | undefined, password: ɵValue<FormControl<string | null>> | undefined) {
-    return this.http.post(this.baseUrl + 'register', { email, password }).subscribe((data:any) => {
-      console.log(data)
+    this.http.post(this.baseUrl + 'register', { email, password })
+      .pipe(catchError((error: any, caught: Observable<any>): any => {
+        console.error('There was an error!', error);
+
+        // after handling error, return a new observable
+        // that doesn't emit any values and completes
+      }))
+      .subscribe(data => {
+      return data;
     });
   }
 

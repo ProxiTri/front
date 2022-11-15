@@ -22,8 +22,10 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
-    this.data  = this.authS.login(this.loginForm.value.mail, this.loginForm.value.password);
-    console.table(this.data);
-    console.info('error', this.data.error.message);
+    this.data = this.authS.loginObs(this.loginForm.value.mail, this.loginForm.value.password).subscribe((data: any) => {
+      console.log(data);
+    }, error => {
+      console.log(error.error.message);
+    });
   }
 }
