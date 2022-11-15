@@ -9,7 +9,7 @@ import {NavigationComponent} from "./header/menu/navigation/navigation.component
 import {ArticlesComponent} from "./homepage/articles/articles.component";
 import {SliderComponent} from "./homepage/slider/slider.component";
 import {PollutionComponent} from "./pollution/pollution.component";
-import {GainsComponent} from "./gains/gains.component";
+import {GainsComponent} from "./homepage/gains/gains.component";
 import {QrCodeComponent} from "./qr-code/qr-code.component";
 
 const routes: Routes = [
@@ -37,9 +37,8 @@ const routes: Routes = [
   },
   //GAINS
   {
-    path: 'gains',
-    component: GainsComponent,
-    loadChildren: () => import('./gains/gains.component').then(m => m.GainsComponent)
+    path: 'home#gains',
+    component: GainsComponent
   },
   //QR CODE
   {

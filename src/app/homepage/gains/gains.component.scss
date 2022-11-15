@@ -1,20 +1,26 @@
-.container-gains{
-  display: flex;
-  flex-direction: column;
-}
-
-.container-title {
-  display: flex;
-  padding: 20px 0 50px 0;
-  justify-content: center;
-
-  & .gains {
+section {
+  padding: 3rem 1rem;
+  .container-title {
     display: flex;
-    margin: 0;
+    padding: 3rem 1rem;
+    @media screen and (min-width: 300px) {
+      flex-flow: column nowrap;
+      align-items: center;
+      gap: 3rem;
+    }
+    @media screen and (min-width: 768px) {
+      flex-flow: row nowrap;
+      justify-content: space-evenly;
+    }
 
     & .icon-gains {
-      display: flex;
-      width: 28%;
+      @media screen and (min-width: 300px) {
+        max-width: 200px;
+        min-width: 200px;
+      }
+      @media screen and (min-width: 1000px) {
+        max-width: 300px;
+      }
 
       & img {
         width: 100%;
@@ -24,7 +30,18 @@
 
     & .text-gains {
       & .gains-title {
-        font-size: 45px;
+        @media screen and (min-width: 300px) {
+          font-size: 1.5rem;
+        }
+        @media screen and (min-width: 1000px) {
+          font-size: 2rem;
+        }
+      }
+
+      & ul.list-gains {
+        @media screen and (max-width: 768px) {
+          text-align: center;
+        }
       }
 
       & p.gains-para {
@@ -38,27 +55,42 @@
       }
     }
   }
-}
 
-.cards-gains{
-  display: flex;
-  justify-content: space-around;
-  margin: 60px 0 100px;
-  width: 100%;
-
-  & .cards{
+  .cards-gains{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 160px;
-    height: 160px;
-    text-align: center;
-    border-radius: 15px;
-    color: #ffffff;
-    background-color: #0CAD7D;
+    justify-content: space-around;
+    margin: 60px 0 100px;
+    width: 100%;
+    @media screen and (min-width: 300px) {
+      flex-flow: row wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    @media screen and (min-width: 768px) {
+      justify-content: space-evenly;
+    }
 
-    & p{
-      margin-top: 20px;
+    & .cards{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 160px;
+      height: 160px;
+      text-align: center;
+      border-radius: 15px;
+      color: #ffffff;
+      background-color: #0CAD7D;
+
+      & img {
+        width: 100%;
+        max-width: 50px;
+        max-height: 50px;
+        margin: 0 auto;
+      }
+
+      & p{
+        margin-top: 20px;
+      }
     }
   }
 }
