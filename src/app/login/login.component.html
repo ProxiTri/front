@@ -3,15 +3,24 @@
 
     <h1 class="title-login">Accéder à mon espace</h1>
 
-      <form [formGroup]="loginForm" (ngSubmit)="submitForm()" action="" class="loginForm" id="loginForm">
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()" action="" class="loginForm" id="loginForm">
 
-        <input type="text" formControlName="mail" name="mail" placeholder="Email" class="inputLogin inputForm">
+      <input type="text" formControlName="mail" name="mail" placeholder="Email*" class="inputLogin inputForm">
 
-        <input type="password" formControlName="password" name="password" placeholder="Mot de passe"
-               class="inputLogin inputForm">
+      <input type="password" formControlName="password" name="password" placeholder="Mot de passe*"
+             class="inputLogin inputForm">
 
-        <button>Envoyer</button>
-      </form>
+      <button class="connect login">Se connecter</button>
+    </form>
 
+    <a routerLink="" class="connect forgotmdp">J'ai oublié mon mot de passe</a>
+
+    <div class="hr-container">
+      <div class="hr"></div>
+      <p>ou</p>
+      <div class="hr"></div>
+    </div>
+
+    <a routerLink="" class="connect signup">Se créer un compte</a>
   </div>
 </div>

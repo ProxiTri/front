@@ -1,21 +1,21 @@
 
 .bglogin {
-  overflow: hidden;
+  height: 100vh;
 }
 
-.whitebg{
+.whitebg {
   background-color: var(--gris);
-  width: 40%;
+  width: 50%;
   height: 100%;
   // padding: 50px 0;
-  min-height: 100vh;
+  // min-height: 100vh;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
 }
 
-.title-login{
+.title-login {
   text-transform: uppercase;
 }
 
@@ -24,6 +24,7 @@
   flex-direction: column;
   width: 100%;
   padding-top: 5rem;
+
 }
 
 .inputLogin {
@@ -32,4 +33,45 @@
   margin-bottom: 25px;
   border-radius: 25px;
   border: 2px solid var(--noir);
+}
+
+.connect {
+  width: 50%;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 25px;
+  border: none;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.login {
+  background: var(--vert);
+}
+
+.forgotmdp {
+  background: var(--blue);
+}
+
+.signup {
+  background: var(--jaune2);
+}
+
+.hr-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+  p {
+    margin: 0 10px;
+    text-transform: uppercase;
+  }
+}
+
+.hr {
+  width: 160px;
+  border-top: 1px solid var(--noir);
 }
