@@ -152,10 +152,11 @@ export class MapComponent implements OnInit {
 
           markers.addLayer(L.marker([ben.localisationLatitude, ben.localisationLongitude],
             {icon: iconPlace})
-            .bindPopup(pop))
+            .bindPopup(pop).on('click', () => {
+              this.weatherPollutionAPI(ben.localisationLatitude, ben.localisationLongitude);
+            }))
         });
         this.map.addLayer(markers);
-
       })
     });
     this.weatherPollutionAPI(46.160329, -1.151139);
@@ -595,7 +596,7 @@ export class MapComponent implements OnInit {
   }
 
   weatherPollutionAPI(lat: any, long: any) {
-    this.http.get(`http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=064cd68e-2525-4ae9-8b58-511ca42c2029`).subscribe((res: any) => {
+    this.http.get(`http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=256c6e2d-e90b-4449-adc0-57a4876fb7d0`).subscribe((res: any) => {
       this.weatherPollutionActions(res);
     })
   }
