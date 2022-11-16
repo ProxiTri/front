@@ -21,5 +21,11 @@
   </div>
   <div class="map-frame">
     <div id="map"><button (click)="locate()" class="location">Localiser moi !</button></div>
+    <div #weather class="weather">
+      <div>
+        <img [src]="weatherObject.image" alt="Icone du temps">
+      </div>
+      <span>{{weatherObject.temperature}}</span>
+    </div>
   </div>
 </div>

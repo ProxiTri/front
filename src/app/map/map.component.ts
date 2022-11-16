@@ -1,5 +1,5 @@
 // Ajouter OnInit pour effectuer des opérations à l'initialisation du composant.
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
@@ -12,6 +12,11 @@ import 'leaflet-routing-machine';
 
 
 export class MapComponent implements OnInit {
+  @ViewChild('weather') weather: ElementRef<any> | undefined;
+  weatherObject = {
+    image: <string> '',
+    temperature: <string> '',
+  };
   constructor(private http: HttpClient) {}
   map: any;
   auth_token = '';
@@ -74,7 +79,7 @@ export class MapComponent implements OnInit {
       });
 
     })
-
+    this.weatherAPI();
   }
 
   toutes() {
@@ -297,6 +302,22 @@ export class MapComponent implements OnInit {
   receiveMessage(event: any) {
     this.message = event
     console.log(this.message)
+  }
+
+  weatherAPI() {
+    // this.http.get("http://api.airvisual.com/v2/nearest_city?lat=46.160329&lon=-1.151139&key=064cd68e-2525-4ae9-8b58-511ca42c2029").subscribe((res: any) => {
+    //   console.log(res.data.current.weather);
+    //   // @ts-ignore
+    //   this.weather?.nativeElement.children[1].innerText = res.data.current.weather.tp + "°C";
+    //   // @ts-ignore
+    //   this.weather?.nativeElement.children[0].src = res.data.current.weather.ic;
+    // })
+
+
+    this.weatherObject = {
+      image: "https://www.airvisual.com/images/01n.png",
+      temperature: "20°C"
+    }
   }
 
 

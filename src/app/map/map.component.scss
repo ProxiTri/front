@@ -52,6 +52,34 @@
   .map-frame {
     width: 84%;
     height: 100%;
+    position: relative;
+
+    .weather {
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      z-index: 999;
+      padding: 2rem;
+      border-radius: 30px;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      gap: 2rem;
+
+      &>div {
+        width: 10%;
+        img {
+          width: 100%;
+        }
+      }
+      span {
+        width: 90%;
+        font-weight: 400;
+        font-size: 1.3rem;
+      }
+    }
   }
 }
 #map {
