@@ -37,6 +37,7 @@
   cursor: pointer;
   opacity: .6;
   object-fit: cover;
+  position: relative;
 
   & .img-thumb {
     width: 190px;
@@ -52,32 +53,39 @@
 
 .article-title {
   position: absolute;
-  //top: 25%;
-  top: 55%;
+  top: 30%;
+  //top: 55%;
   left: 10%;
 
   & h1 {
     //font-size: 90px;
-    font-size: 65px;
+    font-size: 3rem;
     color: #ffda26;
+    text-transform: uppercase;
+    letter-spacing: -.1rem;
   }
 
   & p {
-    width: 40%;
+    margin: 4.5rem 0 4rem 0;
+    max-width: 40%;
     //font-size: 30px;
     font-size: 25px;
     color: #ffffff;
-    margin: 40px 0;
   }
 
   & button {
     background: #ffda26;
     border: none;
-    border-radius: 30px;
+    border-radius: .8rem;
     //padding: 23px 37px;
-    padding: 15px 40px;
-    font-size: 30px;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  & button:hover {
+    opacity: 70%;
+    transition: .5s;
   }
 }
 
@@ -96,11 +104,12 @@ li.img-slider-left{
 
 .text-test p {
   position: absolute;
-  left: 86%;
-  font-size: 25px;
-  margin-top: 50px;
-  width: 12%;
-  color: #ff0000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: white;
+  text-transform: uppercase;
   font-weight: bold;
 }
 
