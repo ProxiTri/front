@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { LogoComponent } from './header/menu/logo/logo.component';
-import { NavigationComponent } from './header/menu/navigation/navigation.component';
 import { HeaderComponent } from './header/header.component';
 import { AccountComponent } from './account/account.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -35,7 +34,6 @@ import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
     AppComponent,
     MenuComponent,
     LogoComponent,
-    NavigationComponent,
     HeaderComponent,
     AccountComponent,
     HomepageComponent,
