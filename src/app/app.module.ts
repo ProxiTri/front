@@ -20,6 +20,7 @@ import { CardComponent } from './account/card/card.component';
 import { MapComponent } from './map/map.component';
 import { PollutionComponent } from './pollution/pollution.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
+import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
 import { InfosComponent } from './pollution/infos/infos.component';
@@ -59,6 +60,7 @@ import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
     HttpClientModule,
     BarcodeScannerLivestreamModule,
     NgxBarcodeModule,
+    FormsModule
   ],
   providers: [
 

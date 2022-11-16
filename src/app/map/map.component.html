@@ -5,21 +5,37 @@
     <br>
     <br>
     <br>
-    <h3>Affinez votre recherche :</h3>
-    <button class="btnView bg-yellow text-black" id="toutes" (click)="toutes()"><p>Afficher toutes les bennes </p><img src="assets/img/corbeille.png" alt=""></button>
-    <button class="btnView bg-blue" id="plastic" (click)="plastic()"><p>Afficher les bennes à plastique </p><img src="assets/img/icons8-plastic-bottle-96.png" alt=""></button>
-    <button class="btnView bg-green" id="verre" (click)="verre()"><p>Afficher les bennes à verre </p><img src="assets/img/icons8-broken-bottle-96.png" alt=""></button>
-    <button class="btnView bg-white text-black" id="paper" (click)="paper()"><p>Afficher les bennes à papier </p><img src="assets/img/icons8-paper-waste-96.png" alt=""></button>
-    <button class="btnView bg-grey text-black" id="menage" (click)="menage()"><p>Afficher les bennes à ordures ménagères </p><img src="assets/img/waste.png" alt=""></button>
+    <h3>Affiner votre recherche :</h3>
+    <button class="btnView bg-yellow text-black" id="toutes" (click)="toutes()"><p>Afficher toutes les bennes </p><img
+      src="assets/img/corbeille.png" alt=""></button>
+    <button class="btnView bg-blue" id="plastic" (click)="plastic()"><p>Afficher les bennes à plastique </p><img
+      src="assets/img/icons8-plastic-bottle-96.png" alt=""></button>
+    <button class="btnView bg-green" id="verre" (click)="verre()"><p>Afficher les bennes à verre </p><img
+      src="assets/img/icons8-broken-bottle-96.png" alt=""></button>
+    <button class="btnView bg-white text-black" id="paper" (click)="paper()"><p>Afficher les bennes à papier </p><img
+      src="assets/img/icons8-paper-waste-96.png" alt=""></button>
+    <button class="btnView bg-grey text-black" id="menage" (click)="menage()"><p>Afficher les bennes à ordures
+      ménagères </p><img src="assets/img/waste.png" alt=""></button>
     <br>
     <br>
-    <h3>Aller à la benne la plus proche :</h3>
-    <button (click)="locate2()" class="btnView bg-blue">Localiser moi !</button>
-    <input class="search-loca" type="text"  value="" placeholder="Depart">
-    <input class="search-loca" type="text" value="" placeholder="Arivée">
-    <button class="btnView bg-yellow text-black" (click)="route([49.443232, 1.099971],  [46.1667, -1.15])">Démarrer l'itinairaire <img src="assets/img/icons8-location-96.png" alt=""></button>
+    <h3>Planifier votre itinéraire :</h3>
+    <button (click)="locate()" class="btnView bg-blue">Localiser moi !</button>
+    <input class="search-loca" type="text" name="depart" [(ngModel)]="departLabel" (keyup)="departProp()" value="{{ departLabel }}" placeholder="Depart">
+    <div>
+      <p *ngFor="let proposition of propositionsDepart"  class="proposition" style="cursor: pointer" (click)="depart2(proposition.properties.label)">{{ proposition.properties.label }}</p>
+    </div>
+
+    <h3>Cliquer sur une poubelle ou rentrer une adresse</h3>
+    <input class="search-loca" type="text" [(ngModel)]="arriveeLabel" (keyup)="arriveProp()" value="{{ arriveeLabel }}" placeholder="Arrivée" name="arrive">
+    <div>
+        <p *ngFor="let proposition of propositions"  class="proposition" style="cursor: pointer" (click)="arrive(proposition.properties.label)">{{ proposition.properties.label }}</p>
+    </div>
+
+    <button class="btnView bg-yellow text-black" (click)="route()">Démarrer l'itinairaire<img src="assets/img/icons8-location-96.png" alt=""></button>
   </div>
   <div class="map-frame">
-    <div id="map"><button (click)="locate()" class="location">Localiser moi !</button></div>
+    <div id="map">
+      <button (click)="locate();" class="location">Localiser moi !</button>
+    </div>
   </div>
 </div>
