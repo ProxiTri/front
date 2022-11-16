@@ -23,9 +23,15 @@
     <div id="map"><button (click)="locate()" class="location">Localiser moi !</button></div>
     <div #weather class="weather">
       <div>
-        <img [src]="weatherObject.image" alt="Icone du temps">
+        <div>
+          <img [src]="weatherObject.image" alt="Icone du temps">
+        </div>
+        <span>{{weatherObject.temperature}}</span>
+        <div class="pollution">
+          <span class="indice" (click)="clickIndice()" [ngClass]="{'good': indice <= 50, 'yellow': indice > 50 && indice <= 100, 'orange': indice > 101 && indice <= 150, 'red': indice > 151 && indice <= 200, 'purple': indice > 201 && indice <= 300, 'alert': indice > 301 && indice <= 500}">{{pollutionObject.aqius}}</span>
+        </div>
       </div>
-      <span>{{weatherObject.temperature}}</span>
+      <span id="explain-indice">L'indice de la qualité de l'air est <strong>{{infoAqius}}</strong>. <br> Cet indice correspond à l'indice de la qualité de l'air. Plus celui-ci augmente, plus la qualité de l'air est médiocre.</span>
     </div>
   </div>
 </div>

@@ -17,6 +17,12 @@ export class MapComponent implements OnInit {
     image: <string> '',
     temperature: <string> '',
   };
+  pollutionObject = {
+    aqius: <string> '',
+    mainus: <string> ''
+  }
+  indice: any;
+  infoAqius: string = '';
   constructor(private http: HttpClient) {}
   map: any;
   auth_token = '';
@@ -79,7 +85,7 @@ export class MapComponent implements OnInit {
       });
 
     })
-    this.weatherAPI();
+    this.weatherPollutionAPI();
   }
 
   toutes() {
@@ -304,7 +310,7 @@ export class MapComponent implements OnInit {
     console.log(this.message)
   }
 
-  weatherAPI() {
+  weatherPollutionAPI() {
     // this.http.get("http://api.airvisual.com/v2/nearest_city?lat=46.160329&lon=-1.151139&key=064cd68e-2525-4ae9-8b58-511ca42c2029").subscribe((res: any) => {
     //   console.log(res.data.current.weather);
     //   // @ts-ignore
@@ -317,6 +323,35 @@ export class MapComponent implements OnInit {
     this.weatherObject = {
       image: "https://www.airvisual.com/images/01n.png",
       temperature: "20°C"
+    }
+
+    this.pollutionObject = {
+      aqius: "20",
+      mainus: "p2"
+    }
+    this.indice = 55;
+    this.infoAqiusCheck();
+
+  }
+
+  clickIndice() {
+    // @ts-ignore
+    document.querySelector('#explain-indice').classList.toggle('show');
+  }
+
+  infoAqiusCheck() {
+    if (this.indice <= 50) {
+      this.infoAqius = "Bon";
+    } else if (this.indice <= 100) {
+      this.infoAqius = "Moyen";
+    } else if (this.indice <= 150) {
+      this.infoAqius = "Mauvais pour les groupes sensibles";
+    } else if (this.indice <= 200) {
+      this.infoAqius = "Mauvais";
+    } else if (this.indice <= 300) {
+      this.infoAqius = "Très mauvais";
+    } else {
+      this.infoAqius = "Hors norme";
     }
   }
 
