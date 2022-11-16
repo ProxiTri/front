@@ -74,7 +74,7 @@
         align-items: center;
         gap: 2rem;
         &>div {
-          width: 10%;
+          width: 15%;
           img {
             width: 100%;
           }
@@ -282,4 +282,18 @@
   background-color: var(--gris);
   margin-bottom: 1rem;
   width: 100%;
+}
+
+.proposition {
+  margin-bottom: 1rem;
+}
+
+
+// POPUP
+
+button.goToBtn {
+  padding: .5rem!important;
+  background-color: red;
+  border-radius: .8rem;
+  border: none;
 }
