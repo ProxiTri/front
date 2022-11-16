@@ -1,24 +1,34 @@
-<div class="bglogin" style='background: url("assets/img/img-slider-1.png")'>
-  <div class="whitebg">
+<div class="full-width">
+  <div class="bglogin" style='background-image: url("assets/img/img-slider-1.png")'>
+    <div class="whitebg">
 
-    <h1 class="title-login">Accéder à mon espace</h1>
+      <h1 class="title-login">Accéder à mon espace</h1>
 
-    {{errorForm}}
+      <span class="errorMessage">{{errorForm}}</span>
 
-    <form [formGroup]="registerForm" (ngSubmit)="submitForm()" action="" class="loginForm" id="loginForm">
+      <form [formGroup]="registerForm" (ngSubmit)="submitForm()" action="" class="registerForm" id="registerForm">
 
-      <input type="text" formControlName="name" name="name" placeholder="nom" class="inputLogin inputForm">
+        <input type="text" formControlName="name" name="name" placeholder="nom" class="inputRegister inputForm">
 
-      <input type="text" formControlName="lastname" name="lastname" placeholder="prenom" class="inputLogin inputForm">
+        <input type="text" formControlName="lastname" name="lastname" placeholder="prenom"
+               class="inputRegister inputForm">
 
-      <input type="text" formControlName="mail" name="mail" placeholder="Email" class="inputLogin inputForm">
+        <input type="text" formControlName="mail" name="mail" placeholder="Email" class="inputRegister inputForm">
 
-      <input type="password" formControlName="password" name="password" placeholder="Mot de passe"
-             class="inputLogin inputForm">
+        <input type="password" formControlName="password" name="password" placeholder="Mot de passe"
+               class="inputRegister inputForm">
 
-      <button class="register">Envoyer</button>
-    </form>
+        <button class="register signup">Inscription</button>
+      </form>
 
+      <div class="hr-container">
+        <div class="hr"></div>
+        <p>ou</p>
+        <div class="hr"></div>
+      </div>
 
+      <a routerLink="/login" class="register login">Vous avez déjà un compte ?</a>
+
+    </div>
   </div>
 </div>

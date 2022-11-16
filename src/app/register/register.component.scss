@@ -1,0 +1,133 @@
+.full-width {
+  height: 100vh;
+
+  .bglogin {
+    height: 100%;
+    @media only screen and (max-width: 750px) {
+      background-image: none !important;
+    }
+
+    .whitebg {
+      background: var(--gris);
+      height: 100%;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      padding: 0 7px;
+      @media only screen and (min-width: 1050px) {
+        width: 65%;
+      }
+      @media screen and (max-width: 750px) {
+        width: 100%;
+        padding-bottom: 150px;
+        margin-bottom: 150px;
+      }
+
+      .title-login {
+        font-weight: 400;
+        text-transform: uppercase;
+        //padding-top: 20px;
+        padding-top: 10px;
+        text-align: center;
+        @media only screen and (min-width: 1050px) {
+          padding-top: 50px;
+        }
+      }
+
+      .errorMessage {
+        text-align: center;
+        color: crimson;
+        margin-top: 20px;
+
+      }
+
+      .registerForm {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 2rem;
+
+        .inputRegister {
+          width: 50%;
+          padding: 15px;
+          margin-bottom: 25px;
+          border-radius: 25px;
+          border: 2px solid var(--noir);
+          @media screen and (max-width: 1075px) {
+            width: 75%;
+          }
+          @media screen and (max-width: 750px) {
+            border: 1px solid var(--noir);
+          }
+        }
+
+        ::placeholder {
+          color: var(--noir);
+        }
+      }
+
+      .register {
+        width: 50%;
+        padding: 15px;
+        margin-bottom: 25px;
+        border-radius: 25px;
+        border: none;
+        text-transform: uppercase;
+        color: #ffffff;
+        text-align: center;
+        cursor: pointer;
+        font-size: 16px;
+        @media screen and (max-width: 1075px) {
+          width: 75%;
+          font-size: 13px;
+        }
+        @media screen and (max-width: 305px) {
+          font-size: 12px;
+        }
+      }
+
+      .signup {
+        background: var(--vert);
+        transition: .5s ease-in-out;
+      }
+
+      .signup:hover {
+        background-color: #0e9069;
+        transition: .5s ease-in-out;
+      }
+
+      .login {
+        background: var(--jaune2);
+        transition: .5s ease-in-out;
+      }
+
+      .login:hover {
+        background-color: #ffd400;
+        transition: .5s ease-in-out;
+      }
+
+      .hr-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+
+        p {
+          margin: 0 10px;
+          text-transform: uppercase;
+        }
+
+        .hr {
+          max-width: 160px;
+          border-top: 1px solid var(--noir);
+          @media screen and (max-width: 1500px) {
+            width: 120px;
+          }
+          @media screen and (max-width: 1200px) {
+            width: 85px;
+          }
+        }
+      }
+    }
+  }
+}
