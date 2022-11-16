@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="full-width">
+  <div class="bglogin" style='background: url("assets/img/img-slider-1.png")'>
+    <div class="whitebg">
+
+      <h1 class="title-login">Accéder à mon espace</h1>
+
+      <form [formGroup]="loginForm" (ngSubmit)="submitForm()" action="" class="loginForm" id="loginForm">
+
+        <span class="errorMessage">{{errorForm}}</span>
+
+        <input type="text" formControlName="mail" name="mail" placeholder="Addresse Email" class="inputLogin inputForm">
+
+        <input type="password" formControlName="password" name="password" placeholder="Mot de passe"
+               class="inputLogin inputForm">
+
+
+        <button class="connect login">Se connecter</button>
+      </form>
+
+      <a routerLink="" class="connect forgotmdp">J'ai oublié mon mot de passe</a>
+
+      <div class="hr-container">
+        <div class="hr"></div>
+        <p>ou</p>
+        <div class="hr"></div>
+      </div>
+
+      <a routerLink="/register" class="connect signup">Se créer un compte</a>
+    </div>
+  </div>
+</div>
