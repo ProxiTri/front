@@ -1,30 +1,10 @@
 <header>
   <div class="wrap">
-    <div class="left">
-      <a routerLink="/">
-        <img src="/assets/img/logo-proxitri.svg" alt="">
-      </a>
+    <div>
+      <app-logo></app-logo>
     </div>
-    <div class="right">
-      <div class="parent">
-        <a routerLink="/gains"><i class="fa-solid fa-recycle"></i> Les gains du recyclage </a>
-        <br>
-        <div class="triangle"></div>
-      </div>
-      <div class="parent">
-        <a routerLink="qr-code"><i class="fa-solid fa-barcode"></i> Scanner votre codebar </a>
-        <br>
-        <div class="triangle"></div>
-      </div>
-      <div class="parent">
-        <a routerLink="/pollution"><i class="fa-solid fa-cloud"></i> Infos polution </a>
-        <br>
-        <div class="triangle"></div>
-      </div>
-      <div class="grpBtn">
-        <a routerLink="/map" class="btn-yellow"><i class="fa-solid fa-location-dot"></i> Où et comment trouver des ben?</a>
-        <a routerLink="/login" class="btn-blue"><i class="fa-regular fa-user"></i> Mon espace</a>
-      </div>
+    <div>
+      <app-menu></app-menu>
     </div>
   </div>
 </header>
