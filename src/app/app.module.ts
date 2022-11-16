@@ -19,14 +19,15 @@ import { CardComponent } from './account/card/card.component';
 import { MapComponent } from './map/map.component';
 import { PollutionComponent } from './pollution/pollution.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
 import { InfosComponent } from './pollution/infos/infos.component';
 import { FooterComponent } from './footer/footer.component';
 import { DemoDirective } from './demo.directive';
-import {NgxBarcodeModule} from "ngx-barcode";
+import { NgxBarcodeModule } from 'ngx-barcode';
 import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
     InfosComponent,
     FooterComponent,
     DemoDirective,
-    QrCodeComponent
+    QrCodeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
     HttpClientModule,
     BarcodeScannerLivestreamModule,
     NgxBarcodeModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
 

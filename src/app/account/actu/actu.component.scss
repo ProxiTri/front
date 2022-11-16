@@ -1,0 +1,85 @@
+.top-account {
+  display: flex;
+  padding: 72px 0 100px;
+
+  & .left-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    & h1 {
+      font-size: 35px;
+    }
+  }
+
+  & .actu-img-top {
+    width: 930px;
+    height: 245px;
+    border-radius: 15px;
+  }
+
+  .pagination {
+    display: flex;
+
+    & .astuces-slide {
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      margin-left: 15px;
+      border-radius: 50px;
+      background-color: #D9D9D9;
+    }
+
+    & .astuces-slide.active {
+      background-color: #000000;
+    }
+  }
+}
+
+.div-text-actu {
+
+
+  & h3 {
+    position: absolute;
+    top: 13rem;
+    left: 40rem;
+    line-height: 34px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: 400 !important;
+  }
+
+  & p {
+    position: absolute;
+    left: 42%;
+    font-size: 25px;
+    margin-top: 50px;
+    width: 49%;
+    color: #fff;
+    top: 15rem;
+    font-weight: 400 !important;
+  }
+}
+
+
+.grpBtn {
+  margin: 50px 0;
+
+  a {
+    color: var(--noir);
+    padding: 1rem;
+    background-color: var(--jaune2);
+    border-radius: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  .btn-yellow {
+    transition: .5s;
+    background-color: var(--jaune2);
+  }
+
+  .btn-yellow:hover {
+    // background-color: rgba(255, 217, 112, 0.80);
+    background-color: var(--jaune);
+  }
+}
