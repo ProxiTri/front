@@ -1,5 +1,5 @@
 // Ajouter OnInit pour effectuer des opérations à l'initialisation du composant.
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
@@ -18,6 +18,20 @@ export class MapComponent implements OnInit {
   }
 
   /////////////////////// VARIABLES ///////////////////////////
+  @ViewChild('weather') weather: ElementRef<any> | undefined;
+  weatherObject = {
+    city: <string> '',
+    region: <string> '',
+    country: <string> '',
+    image: <string> '',
+    temperature: <string> '',
+  };
+  pollutionObject = {
+    aqius: <string> '',
+    mainus: <string> ''
+  }
+  indice: any;
+  infoAqius: string = '';
   // TOKEN API
   auth_token = '';
   // SET MAP
@@ -138,14 +152,14 @@ export class MapComponent implements OnInit {
 
           markers.addLayer(L.marker([ben.localisationLatitude, ben.localisationLongitude],
             {icon: iconPlace})
-            .bindPopup(pop))
+            .bindPopup(pop).on('click', () => {
+              this.weatherPollutionAPI(ben.localisationLatitude, ben.localisationLongitude);
+            }))
         });
         this.map.addLayer(markers);
-
       })
     });
-
-
+    this.weatherPollutionAPI(46.160329, -1.151139);
   }
 
   // FILTRE TOUTES LES POUBELLES
@@ -432,6 +446,7 @@ export class MapComponent implements OnInit {
 
   // FILTRE POUBELLES EN ORGANIQUE
   menage() {
+    // @ts-ignore
     const markers = L.markerClusterGroup();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -509,6 +524,7 @@ export class MapComponent implements OnInit {
       this.http.get('https://api-adresse.data.gouv.fr/reverse/?lon='+position.coords.longitude+'&lat='+position.coords.latitude).subscribe((data: any) => {
         this.departLabel = data.features[0].properties.label;
       });
+      this.weatherPollutionAPI(position.coords.latitude, position.coords.longitude);
 
 
     }, (error: any) => {
@@ -579,6 +595,50 @@ export class MapComponent implements OnInit {
     }).addTo(this.map);
   }
 
+  weatherPollutionAPI(lat: any, long: any) {
+    this.http.get(`http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=256c6e2d-e90b-4449-adc0-57a4876fb7d0`).subscribe((res: any) => {
+      this.weatherPollutionActions(res);
+    })
+  }
+
+  weatherPollutionActions(res: any) {
+    console.log(res.data);
+    this.weatherObject = {
+      image: `https://www.airvisual.com/images/${res.data.current.weather.ic}.png`,
+      temperature: `${res.data.current.weather.tp}°C`,
+      city: res.data.city,
+      region: res.data.state,
+      country: res.data.country,
+    }
+
+    this.pollutionObject = {
+      aqius: res.data.current.pollution.aqius,
+      mainus: res.data.current.pollution.mainus
+    }
+    this.indice = res.data.current.pollution.aqius;
+    this.infoAqiusCheck();
+  }
+
+  clickIndice() {
+    // @ts-ignore
+    document.querySelector('#explain-indice').classList.toggle('show');
+  }
+
+  infoAqiusCheck() {
+    if (this.indice <= 50) {
+      this.infoAqius = "Bon";
+    } else if (this.indice <= 100) {
+      this.infoAqius = "Moyen";
+    } else if (this.indice <= 150) {
+      this.infoAqius = "Mauvais pour les groupes sensibles";
+    } else if (this.indice <= 200) {
+      this.infoAqius = "Mauvais";
+    } else if (this.indice <= 300) {
+      this.infoAqius = "Très mauvais";
+    } else {
+      this.infoAqius = "Hors norme";
+    }
+  }
 }
 
 
