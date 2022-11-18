@@ -1,7 +1,7 @@
 import { Component, ViewChild, AfterViewInit } from "@angular/core";
 import { BarcodeScannerLivestreamComponent } from "ngx-barcode-scanner";
 import { HttpClient } from '@angular/common/http';
-
+import AOS from "aos";
 
 
 @Component({
@@ -17,16 +17,23 @@ export class QrCodeComponent implements AfterViewInit {
   data:any
   product:any;
   productAr:any;
+  toggle4 = true;
   toggle3 = false;
   toggle2 = true;
   toggle = true;
   audio:any;
-
+  AOS: any;
 
   ngAfterViewInit() {
-    // @ts-ignore
-    this.barcodeScanner.start();
+    new Promise((resolve, reject) => {
+      // @ts-ignore
+      resolve(this.barcodeScanner.start())
+    }).then(()=>{
+      this.toggle4 = false;
+    })
+    AOS.init();
   }
+
   onValueChanges(result: { codeResult: { code: any; }; }) {
     this.toggle2 = true;
     this.data = result.codeResult.code;
@@ -57,12 +64,17 @@ export class QrCodeComponent implements AfterViewInit {
 
   constructor(private httpClient: HttpClient) { }
 
+  again(){
+    console.log("test")
+    this.productAr = null;
+    if (this.barcodeScanner instanceof BarcodeScannerLivestreamComponent) {
+      this.barcodeScanner.start()
+    }
+  }
+
   ngOnInit(): void {
     this.productAr = null;
   }
-  displayButton(){
-    this.toggle = !true;
 
-  }
 }
 
