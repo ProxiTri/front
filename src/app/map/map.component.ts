@@ -3,7 +3,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
-import 'leaflet.markercluster';
+import  'leaflet.markercluster';
 
 
 @Component({
