@@ -1,0 +1,31 @@
+section {
+  .map {
+    height: 500px;
+    overflow-y: hidden;
+  }
+  .wrap {
+    &>div {
+      padding: 3rem 1rem;
+
+      h1, h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #000;
+      }
+      p {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #000;
+      }
+    }
+  }
+  &>div:last-of-type {
+    a.button {
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background-color: #000;
+      color: white;
+      text-align: center;
+    }
+  }
+}

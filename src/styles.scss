@@ -87,3 +87,17 @@ $light: 300;
 $regular: 400;
 $medium: 500;
 $bold: 700;
+
+
+// WRAP
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
+// BODY
+* {
+  scroll-behavior: smooth;
+}
