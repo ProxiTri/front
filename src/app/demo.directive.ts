@@ -20,4 +20,17 @@ export class DemoDirective {
     }
     this.el.nativeElement.parentElement.classList.add("active");
   }
+
+  // @HostListener('click')
+  // actuChange(){
+  //   let top: any = this.el.nativeElement;
+  //   let prev: any = document.getElementById("pagination");
+  //   console.log(this.el.nativeElement)
+  //   // prev.src = top;
+  //   let imageSlide = document.getElementsByClassName("page");
+  //   for (let i = 0; i < imageSlide.length; i++) {
+  //     imageSlide[i].classList.remove("active")
+  //   }
+  //   this.el.nativeElement.parentElement.classList.add("active");
+  // }
 }
