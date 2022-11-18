@@ -1,0 +1,42 @@
+table {
+  margin-bottom: 2rem;
+  thead {
+    background-color: #f5f5f5;
+    th {
+      padding: 2rem 1rem;
+    }
+  }
+  tbody {
+    tr {
+      padding: 2rem 1rem;
+
+      td {
+        padding: 2rem 1rem;
+      }
+    }
+    .good {
+      background-color: #a9e06c;
+      color: #000;
+    }
+    .yellow {
+      background-color: #feff48;
+      color: #000;
+    }
+    .orange {
+      background-color: #fc7f29;
+      color: #000;
+    }
+    .red {
+      background-color: #fb061b;
+      color: #000;
+    }
+    .purple {
+      background-color: #8e3e94;
+      color: #000;
+    }
+    .alert {
+      background-color: #7c0124;
+      color: #fff;
+    }
+  }
+}
