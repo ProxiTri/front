@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import  'leaflet.markercluster';
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -14,7 +15,7 @@ import  'leaflet.markercluster';
 
 
 export class MapComponent implements OnInit {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: ActivatedRoute) {
   }
 
   /////////////////////// VARIABLES ///////////////////////////
@@ -54,6 +55,10 @@ export class MapComponent implements OnInit {
   arrivee: any;
   // LE NOM DE L'ARRIVEE
   arriveeLabel: any;
+
+  // Params URL
+  lat: any;
+  long: any;
 
 /////////////////////////// FIN DES VARIABLES ///////////////////////
 
@@ -157,9 +162,17 @@ export class MapComponent implements OnInit {
             }))
         });
         this.map.addLayer(markers);
+        this.router.queryParams.subscribe(params => {
+          if (params['lat'] && params['long']) {
+            this.lat = params['lat'];
+            this.long = params['long'];
+            this.locateWithCoords(this.lat, this.long);
+          }
+        })
       })
     });
     this.weatherPollutionAPI(46.160329, -1.151139);
+
   }
 
   // FILTRE TOUTES LES POUBELLES
@@ -530,6 +543,20 @@ export class MapComponent implements OnInit {
     }, (error: any) => {
       alert(error.message)
     });
+  }
+
+  locateWithCoords(lat: number, long: number) {
+    this.map.flyTo([lat, long])
+    let iconPlace = L.icon({
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png',
+    });
+    L.marker([lat, long],
+      {icon: iconPlace})
+      .addTo(this.map);
+    this.http.get('https://api-adresse.data.gouv.fr/reverse/?lon='+long+'&lat='+lat).subscribe((data: any) => {
+      this.departLabel = data.features[0].properties.label;
+    });
+    this.weatherPollutionAPI(lat, long);
   }
 
   departProp() {

@@ -10,6 +10,7 @@
       <div class="content" *ngFor="let recycling of comune.recyclingCenters">
         <h4>{{recycling.name}}</h4>
         <p><strong>Horaires : </strong> {{recycling.business_hours}}</p>
+        <a [routerLink]="['/map/']" [queryParams]="{lat: recycling.latitude, long: recycling.longitude}">Voir sur la carte</a>
       </div>
     </div>
   </div>
