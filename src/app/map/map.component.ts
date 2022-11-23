@@ -602,7 +602,7 @@ export class MapComponent implements OnInit {
   }
 
   weatherPollutionActions(res: any) {
-    console.log(res.data);
+    // console.log(res.data);
     this.weatherObject = {
       image: `https://www.airvisual.com/images/${res.data.current.weather.ic}.png`,
       temperature: `${res.data.current.weather.tp}°C`,

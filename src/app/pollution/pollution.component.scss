@@ -18,14 +18,14 @@ section {
         color: #000;
       }
     }
-  }
-  &>div:last-of-type {
-    a.button {
-      margin: 2rem auto;
-      padding: 1rem 2rem;
-      background-color: #000;
-      color: white;
-      text-align: center;
+    .locate {
+      a.button {
+        margin: 2rem auto;
+        padding: 1rem 2rem;
+        background-color: #000;
+        color: white;
+        text-align: center;
+      }
     }
   }
 }
