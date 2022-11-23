@@ -8,6 +8,7 @@ import {catchError, Observable} from "rxjs";
 })
 export class AuthService {
   baseUrl = 'https://api-proxitri.alexis-briet.fr/api/';
+  auth_token = sessionStorage.getItem('token') || '';
 
   constructor(private http: HttpClient) {
   }
@@ -19,6 +20,17 @@ export class AuthService {
 
   register(email: ɵValue<FormControl<string | null>> | undefined, password: ɵValue<FormControl<string | null>> | undefined) {
     return this.http.post<any>(this.baseUrl + 'register', {email, password})
+  }
+
+  getAccessToken() {
+    return new Promise((resolve, reject) => {
+      this.login('alexis.briet2003@gmail.com', 'azerty').subscribe((data: any) => {
+        this.auth_token = data.token;
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      })
+    })
   }
 
   decodeToken(token: string) {
