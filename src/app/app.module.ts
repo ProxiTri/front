@@ -28,6 +28,7 @@ import { DemoDirective } from './demo.directive';
 import { NgxBarcodeModule } from 'ngx-barcode';
 import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
 import { RegisterComponent } from './register/register.component';
+import { CommuneComponent } from './commune/commune.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { RegisterComponent } from './register/register.component';
     FooterComponent,
     DemoDirective,
     QrCodeComponent,
-    RegisterComponent
+    RegisterComponent,
+    CommuneComponent
   ],
   imports: [
     BrowserModule,
