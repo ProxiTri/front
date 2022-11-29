@@ -28,14 +28,23 @@
       color: #000;
       margin-bottom: 1rem;
     }
+    ul li {
+      padding: 1rem;
+    }
   }
+}
+h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 2.5rem;
+  text-align: center;
 }
 .bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
   .miniCard {
-    cursor: pointer;
     padding: .8rem;
     border-radius: .8rem;
     text-align: center;
