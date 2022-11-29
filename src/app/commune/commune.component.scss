@@ -1,0 +1,70 @@
+section {
+  padding: 5rem 0;
+  h2 {
+    font-weight: 700;
+    text-align: center;
+    @media screen and (min-width: 300px) {
+      font-size: 1.5rem;
+    }
+    @media screen and (min-width: 768px) {
+      font-size: 2rem;
+    }
+    @media screen and (min-width: 900px) {
+      font-size: 2.5rem;
+    }
+  }
+  .list-communes{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 3rem;
+    padding: 4rem 0;
+
+    &>div {
+      width: 48%;
+      .header {
+        padding: 1rem;
+        background-color: rgba(255, 217, 112, 0.8);
+
+        h3 {
+          font-weight: 700;
+          font-size: 1.5rem;
+          color: #000;
+          padding-bottom: 1rem;
+        }
+        span {
+          font-weight: 500;
+          font-size: 1.5rem;
+          color: #000;
+
+          &.recycling {
+            padding-left: 1rem;
+            color: #0CAD7D;
+          }
+        }
+      }
+      .content {
+        padding: 1rem;
+        border: 2px solid rgba(255, 217, 112, 0.8);
+        display: flex;
+        flex-flow: column;
+        gap: 1rem;
+
+        h4 {
+          font-weight: 600;
+          font-size: 1.5rem;
+        }
+        p {
+          font-weight: 400;
+          font-size: 1.5rem;
+        }
+        a {
+          margin: 2rem auto;
+          padding: 1rem 2rem;
+          background-color: #000;
+          color: white;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

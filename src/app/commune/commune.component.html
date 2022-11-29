@@ -1,0 +1,17 @@
+<section class="wrap">
+  <h2>Toutes les communes à proximité de La Rochelle :</h2>
+  <div class="list-communes">
+    <div *ngFor="let comune of communesArr;">
+      <div class="header" (click)="showDetailsCommune()">
+        <h3>{{comune.name}}</h3>
+        <span>{{comune.localisationPostalCode}}</span>
+        <span *ngIf="comune.recyclingCenters != 0" class="recycling"><i class="fa-solid fa-truck-droplet"></i> Déchetterie disponible !</span>
+      </div>
+      <div class="content" *ngFor="let recycling of comune.recyclingCenters">
+        <h4>{{recycling.name}}</h4>
+        <p><strong>Horaires : </strong> {{recycling.business_hours}}</p>
+        <a [routerLink]="['/map/']" [queryParams]="{lat: recycling.latitude, long: recycling.longitude}">Voir sur la carte</a>
+      </div>
+    </div>
+  </div>
+</section>
