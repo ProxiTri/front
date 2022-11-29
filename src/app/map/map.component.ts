@@ -79,78 +79,15 @@ export class MapComponent implements OnInit {
         // @ts-ignore
         this.map = L.map('map').setView([46.160329, -1.151139], 14);
         this.wasteS.getWastes(data_token.token).subscribe((data: any) => {
-          data.forEach((ben: { wasteType: { customerDesignation: string; }; localisationStreet: string; commune: { name: string; }; localisationLatitude: number; localisationLongitude: number; }) => {
-            switch (ben.wasteType.customerDesignation) {
-              case "VERRE":
-                iconPlace = L.icon({
-                  iconUrl: 'http://localhost:4200/assets/img/icons8-broken-bottle-96.png',
-                  iconSize: [25, 41]
-                });
-                break;
-              case "PAPIER":
-                iconPlace = L.icon({
-                  iconUrl: 'http://localhost:4200/assets/img/icons8-paper-waste-96.png',
-                  iconSize: [31, 31]
-                });
-                break;
-              case "OM":
-                iconPlace = L.icon({iconUrl: 'http://localhost:4200/assets/img/waste.png', iconSize: [20, 26]});
-                break;
-              case "CS":
-                iconPlace = L.icon({
-                  iconUrl: 'http://localhost:4200/assets/img/icons8-plastic-bottle-96.png',
-                  iconSize: [35, 41]
-                });
-                break;
-              default:
-                iconPlace = L.icon({
-                  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png',
-                  iconSize: [25, 41]
-                });
-                break;
-            }
-            let pop = document.createElement('div');
-
-            let text = document.createElement('p');
-            text.className = 'popText';
-            text.append(document.createTextNode('Type : ' + ben.wasteType.customerDesignation));
-            text.append(document.createElement('br'));
-            text.append(document.createTextNode('Adresse : ' + ben.localisationStreet));
-            text.append(document.createElement('br'));
-            text.append(document.createTextNode('Commune : ' + ben.commune.name));
-            text.append(document.createElement('br'));
-            pop.append(text);
-
-            let btnGo = document.createElement('button');
-            btnGo.className = 'goToBtn';
-            btnGo.style.padding = '.5rem';
-            btnGo.style.border = 'none';
-            btnGo.style.cursor = 'pointer';
-            btnGo.style.backgroundColor = '#026AAF';
-            btnGo.style.color = 'white';
-            btnGo.style.borderRadius = '.8rem';
-
-            btnGo.append(document.createTextNode('Accéder à cette poubelle'));
-            btnGo.onclick = async () => {
-              this.arrive2([ben.localisationLatitude, ben.localisationLongitude])
-              this.route();
-            };
-            pop.append(btnGo);
-
-            markers.addLayer(L.marker([ben.localisationLatitude, ben.localisationLongitude],
-              {icon: iconPlace})
-              .bindPopup(pop).on('click', () => {
-                this.weatherPollutionAPI(ben.localisationLatitude, ben.localisationLongitude);
-              }))
-          });
-          this.map.addLayer(markers);
-          this.router.queryParams.subscribe(params => {
-            if (params['lat'] && params['long']) {
-              this.lat = params['lat'];
-              this.long = params['long'];
-              this.locateWithCoords(this.lat, this.long);
-            }
-          })
+          this.checkAnyWaste(data, markers);
+        });
+        // SI QUERY POSSEDE DES PARAMETRES LAT & LONG, ON REDIRIGE VERS CETTE POSITION
+        this.router.queryParams.subscribe(params => {
+          if (params['lat'] && params['long']) {
+            this.lat = params['lat'];
+            this.long = params['long'];
+            this.locateWithCoords(this.lat, this.long);
+          }
         });
         // RETIRE TOUS LES ANCIENS EVENEMENTS
         this.map.clearAllEventListeners;
@@ -159,19 +96,80 @@ export class MapComponent implements OnInit {
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: 'Map'
         }).addTo(this.map);
-        let iconPlace = L.icon({
-          iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png',
-          iconSize: [10, 10]
-        });
-        // RECUPERATION DES POUBELLES DE L'API
       })
     this.weatherPollutionAPI(46.160329, -1.151139);
   }
 
+  checkAnyWaste(data: any, markers: any, iconPlace?: any) {
+    data.forEach((ben: { wasteType: { customerDesignation: string; }; localisationStreet: string; commune: { name: string; }; localisationLatitude: number; localisationLongitude: number; }) => {
+      switch (ben.wasteType.customerDesignation) {
+        case "VERRE":
+          iconPlace = L.icon({
+            iconUrl: 'http://localhost:4200/assets/img/icons8-broken-bottle-96.png',
+            iconSize: [25, 41]
+          });
+          break;
+        case "PAPIER":
+          iconPlace = L.icon({
+            iconUrl: 'http://localhost:4200/assets/img/icons8-paper-waste-96.png',
+            iconSize: [31, 31]
+          });
+          break;
+        case "OM":
+          iconPlace = L.icon({iconUrl: 'http://localhost:4200/assets/img/waste.png', iconSize: [20, 26]});
+          break;
+        case "CS":
+          iconPlace = L.icon({
+            iconUrl: 'http://localhost:4200/assets/img/icons8-plastic-bottle-96.png',
+            iconSize: [35, 41]
+          });
+          break;
+        default:
+          iconPlace = L.icon({
+            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png',
+            iconSize: [25, 41]
+          });
+          break;
+      }
+      let pop = document.createElement('div');
 
+      let text = document.createElement('p');
+      text.className = 'popText';
+      text.append(document.createTextNode('Type : ' + ben.wasteType.customerDesignation));
+      text.append(document.createElement('br'));
+      text.append(document.createTextNode('Adresse : ' + ben.localisationStreet));
+      text.append(document.createElement('br'));
+      text.append(document.createTextNode('Commune : ' + ben.commune.name));
+      text.append(document.createElement('br'));
+      pop.append(text);
+
+      let btnGo = document.createElement('button');
+      btnGo.className = 'goToBtn';
+      btnGo.style.padding = '.5rem';
+      btnGo.style.border = 'none';
+      btnGo.style.cursor = 'pointer';
+      btnGo.style.backgroundColor = '#026AAF';
+      btnGo.style.color = 'white';
+      btnGo.style.borderRadius = '.8rem';
+
+      btnGo.append(document.createTextNode('Accéder à cette poubelle'));
+      btnGo.onclick = async () => {
+        this.arrive2([ben.localisationLatitude, ben.localisationLongitude])
+        this.route();
+      };
+      pop.append(btnGo);
+
+      markers.addLayer(L.marker([ben.localisationLatitude, ben.localisationLongitude],
+        {icon: iconPlace})
+        .bindPopup(pop).on('click', () => {
+          this.weatherPollutionAPI(ben.localisationLatitude, ben.localisationLongitude);
+        }))
+    });
+    this.map.addLayer(markers);
+  }
 
   // FILTRE TOUTES LES POUBELLES
-  toutes() {
+  getWastes() {
     const markers = L.markerClusterGroup();
 
     // RETIRE TOUS LES ANCIENS EVENEMENTS
@@ -189,69 +187,7 @@ export class MapComponent implements OnInit {
     this.authS.getAccessToken()
       .then((data_token: any) => {
         this.wasteS.getWastes(data_token.token).subscribe((data: any) => {
-          data.forEach((ben: { wasteType: { customerDesignation: string; }; localisationStreet: string; commune: { name: string; }; localisationLatitude: number; localisationLongitude: number; }) => {
-            switch (ben.wasteType.customerDesignation) {
-              case "VERRE":
-                iconPlace = L.icon({
-                  iconUrl: 'http://localhost:4200/assets/img/icons8-broken-bottle-96.png',
-                  iconSize: [25, 41]
-                });
-                break;
-              case "PAPIER":
-                iconPlace = L.icon({
-                  iconUrl: 'http://localhost:4200/assets/img/icons8-paper-waste-96.png',
-                  iconSize: [31, 31]
-                });
-                break;
-              case "OM":
-                iconPlace = L.icon({iconUrl: 'http://localhost:4200/assets/img/waste.png', iconSize: [20, 26]});
-                break;
-              case "CS":
-                iconPlace = L.icon({
-                  iconUrl: 'http://localhost:4200/assets/img/icons8-plastic-bottle-96.png',
-                  iconSize: [35, 41]
-                });
-                break;
-              default:
-                iconPlace = L.icon({
-                  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png',
-                  iconSize: [25, 41]
-                });
-                break;
-            }
-            let pop = document.createElement('div');
-
-            let text = document.createElement('p');
-            text.className = 'popText';
-            text.append(document.createTextNode('Type : ' + ben.wasteType.customerDesignation));
-            text.append(document.createElement('br'));
-            text.append(document.createTextNode('Adresse : ' + ben.localisationStreet));
-            text.append(document.createElement('br'));
-            text.append(document.createTextNode('Commune : ' + ben.commune.name));
-            text.append(document.createElement('br'));
-            pop.append(text);
-
-            let btnGo = document.createElement('button');
-            btnGo.className = 'goToBtn';
-            btnGo.style.padding = '.5rem';
-            btnGo.style.border = 'none';
-            btnGo.style.cursor = 'pointer';
-            btnGo.style.backgroundColor = '#026AAF';
-            btnGo.style.color = 'white';
-            btnGo.style.borderRadius = '.8rem';
-
-            btnGo.append(document.createTextNode('Accéder à cette poubelle'));
-            btnGo.onclick = async () => {
-              this.arrive2([ben.localisationLatitude, ben.localisationLongitude])
-              this.route();
-            };
-            pop.append(btnGo);
-
-            markers.addLayer(L.marker([ben.localisationLatitude, ben.localisationLongitude],
-              {icon: iconPlace})
-              .bindPopup(pop))
-          });
-          this.map.addLayer(markers);
+          this.checkAnyWaste(data, markers);
         });
       })
   };
@@ -299,7 +235,7 @@ export class MapComponent implements OnInit {
               btnGo.style.color = 'white';
               btnGo.style.borderRadius = '.8rem';
 
-              btnGo.append(document.createTextNode('Go à cette poubelle'));
+              btnGo.append(document.createTextNode('Accéder à cette poubelle'));
               btnGo.onclick = async () => {
                 this.arrive2([ben.localisationLatitude, ben.localisationLongitude])
                 this.route();
