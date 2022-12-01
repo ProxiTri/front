@@ -6,15 +6,15 @@
     <br>
     <br>
     <h3>Affiner votre recherche :</h3>
-    <button class="btnView bg-yellow text-black" id="toutes" (click)="toutes()"><p>Afficher toutes les bennes </p><img
+    <button class="btnView bg-yellow text-black" id="toutes" (click)="getWastes()"><p>Afficher toutes les bennes </p><img
       src="assets/img/corbeille.png" alt=""></button>
-    <button class="btnView bg-blue" id="plastic" (click)="plastic()"><p>Afficher les bennes à plastique </p><img
+    <button class="btnView bg-blue" id="plastic" (click)="filterWaste('http://localhost:4200/assets/img/icons8-plastic-bottle-96.png', 'CS')"><p>Afficher les bennes à plastique </p><img
       src="assets/img/icons8-plastic-bottle-96.png" alt=""></button>
-    <button class="btnView bg-green" id="verre" (click)="verre()"><p>Afficher les bennes à verre </p><img
+    <button class="btnView bg-green" id="verre" (click)="filterWaste('http://localhost:4200/assets/img/icons8-broken-bottle-96.png', 'VERRE')"><p>Afficher les bennes à verre </p><img
       src="assets/img/icons8-broken-bottle-96.png" alt=""></button>
-    <button class="btnView bg-white text-black" id="paper" (click)="paper()"><p>Afficher les bennes à papier </p><img
+    <button class="btnView bg-white text-black" id="paper" (click)="filterWaste('http://localhost:4200/assets/img/icons8-paper-waste-96.png', 'PAPIER')"><p>Afficher les bennes à papier </p><img
       src="assets/img/icons8-paper-waste-96.png" alt=""></button>
-    <button class="btnView bg-grey text-black" id="menage" (click)="menage()"><p>Afficher les bennes à ordures
+    <button class="btnView bg-grey text-black" id="menage" (click)="filterWaste('http://localhost:4200/assets/img/waste.png', 'OM')"><p>Afficher les bennes à ordures
       ménagères </p><img src="assets/img/waste.png" alt=""></button>
     <br>
     <br>
