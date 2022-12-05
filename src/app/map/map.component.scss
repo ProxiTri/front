@@ -1,25 +1,29 @@
 .map-container {
-  height: 78vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .pointerSize{
-    width: 20%!important;
+
+  .pointerSize {
+    width: 20% !important;
   }
+
   .sidebar {
     padding: .5rem;
     max-height: 100%;
     overflow: auto;
-      font-weight: 500;
+    font-weight: 500;
     width: 16%;
     background-color: white;
     box-shadow: rgba(0, 0, 0.4, 0) 2px 4px 0px, rgba(0, 0, 0.3, 0) 7px 13px -3px 0px, rgba(0, 0, 0.2, 0) 0px -3px 0px inset;
     height: 100%;
-    h3{
+
+    h3 {
       font-weight: 400;
       margin-bottom: .7rem;
     }
+
     .search {
       padding: 1rem;
       border-radius: 2rem;
@@ -28,6 +32,7 @@
       width: 100%;
       font-size: 1rem;
     }
+
     .btnView {
       cursor: pointer;
       width: 100%;
@@ -40,20 +45,36 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       img {
         width: 35px;
       }
     }
-    .btnView:hover{
+
+    .btnView:hover {
       opacity: 70%;
       transition: .5s;
     }
   }
+
   .map-frame {
     width: 84%;
+    z-index: 0;
     height: 100%;
     position: relative;
 
+    .show {
+      display: block!important;
+    }
+    .appear-weather  {
+      position: absolute;top: 5%;
+      right: 10%;
+      padding: 1rem;
+      z-index: 9999;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+    }
     .weather {
       position: absolute;
       top: 10%;
@@ -68,17 +89,20 @@
       flex-flow: column;
       gap: 2rem;
 
-      &>div {
+      & > div {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
         gap: 2rem;
-        &>div {
+
+        & > div {
           width: 15%;
+
           img {
             width: 100%;
           }
         }
+
         span {
           width: 90%;
           font-weight: 400;
@@ -102,22 +126,27 @@
             background-color: #a9e06c;
             color: #000;
           }
+
           .yellow {
             background-color: #feff48;
             color: #000;
           }
+
           .orange {
             background-color: #fc7f29;
             color: #000;
           }
+
           .red {
             background-color: #fb061b;
             color: #000;
           }
+
           .purple {
             background-color: #8e3e94;
             color: #000;
           }
+
           .alert {
             background-color: #7c0124;
             color: #fff;
@@ -128,13 +157,15 @@
       #explain-indice {
         display: none;
       }
+
       .show {
-        display: block!important;
+        display: block !important;
         font-size: 1rem;
       }
     }
   }
 }
+
 #map {
   height: 100%;
 }
@@ -143,125 +174,141 @@
 //SEARCH BAR
 
 .leaflet-container .leaflet-control-search {
-  position:relative;
-  float:left;
-  background:#fff;
-  color:#1978cf;
-  border: 2px solid rgba(0,0,0,0.2);
+  position: relative;
+  float: left;
+  background: #fff;
+  color: #1978cf;
+  border: 2px solid rgba(0, 0, 0, 0.2);
   background-clip: padding-box;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.8);
-  z-index:1000;
+  z-index: 1000;
   margin-left: 10px;
   margin-top: 10px;
 }
-.leaflet-control-search.search-exp {/*expanded*/
+
+.leaflet-control-search.search-exp { /*expanded*/
   background: #fff;
-  border: 2px solid rgba(0,0,0,0.2);
+  border: 2px solid rgba(0, 0, 0, 0.2);
   background-clip: padding-box;
 }
+
 .leaflet-control-search .search-input {
-  display:block;
-  float:left;
+  display: block;
+  float: left;
   background: #fff;
-  border:1px solid #666;
-  border-radius:2px;
-  height:22px;
-  padding:0 20px 0 2px;
-  margin:4px 0 4px 4px;
+  border: 1px solid #666;
+  border-radius: 2px;
+  height: 22px;
+  padding: 0 20px 0 2px;
+  margin: 4px 0 4px 4px;
 }
+
 .leaflet-control-search.search-load .search-input {
   //background: url('../images/loader.gif') no-repeat center right #fff;
 }
+
 .leaflet-control-search.search-load .search-cancel {
-  visibility:hidden;
+  visibility: hidden;
 }
+
 .leaflet-control-search .search-cancel {
-  display:block;
-  width:22px;
-  height:22px;
-  position:absolute;
-  right:28px;
-  margin:6px 0;
+  display: block;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  right: 28px;
+  margin: 6px 0;
   //background: url('../images/search-icon.png') no-repeat 0 -46px;
-  text-decoration:none;
+  text-decoration: none;
   filter: alpha(opacity=80);
   opacity: 0.8;
 }
+
 .leaflet-control-search .search-cancel:hover {
   filter: alpha(opacity=100);
   opacity: 1;
 }
+
 .leaflet-control-search .search-cancel span {
-  display:none;/* comment for cancel button imageless */
-  font-size:18px;
-  line-height:20px;
-  color:#ccc;
-  font-weight:bold;
+  display: none; /* comment for cancel button imageless */
+  font-size: 18px;
+  line-height: 20px;
+  color: #ccc;
+  font-weight: bold;
 }
+
 .leaflet-control-search .search-cancel:hover span {
-  color:#aaa;
+  color: #aaa;
 }
+
 .leaflet-control-search .search-button {
-  display:block;
-  float:left;
-  width:30px;
-  height:30px;
+  display: block;
+  float: left;
+  width: 30px;
+  height: 30px;
   //background: url('../images/search-icon.png') no-repeat 4px 4px #fff;
-  border-radius:4px;
+  border-radius: 4px;
 }
+
 .leaflet-control-search .search-button:hover {
   //background: url('../images/search-icon.png' ) no-repeat 4px -20px #fafafa;
 }
+
 .leaflet-control-search .search-tooltip {
-  position:absolute;
-  top:100%;
-  left:0;
-  float:left;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  float: left;
   list-style: none;
   padding-left: 0;
-  min-width:120px;
-  max-height:122px;
-  box-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+  min-width: 120px;
+  max-height: 122px;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
   background-color: rgba(0, 0, 0, 0.25);
-  z-index:1010;
-  overflow-y:auto;
-  overflow-x:hidden;
+  z-index: 1010;
+  overflow-y: auto;
+  overflow-x: hidden;
   cursor: pointer;
 }
+
 .leaflet-control-search .search-tip {
-  margin:2px;
-  padding:2px 4px;
-  display:block;
-  color:black;
+  margin: 2px;
+  padding: 2px 4px;
+  display: block;
+  color: black;
   background: #eee;
-  border-radius:.25em;
-  text-decoration:none;
-  white-space:nowrap;
-  vertical-align:center;
+  border-radius: .25em;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: center;
 }
+
 .leaflet-control-search .search-button:hover {
   background-color: #f4f4f4;
 }
+
 .leaflet-control-search .search-tip-select,
 .leaflet-control-search .search-tip:hover {
   background-color: #fff;
 }
+
 .leaflet-control-search .search-alert {
-  cursor:pointer;
-  clear:both;
-  font-size:.75em;
-  margin-bottom:5px;
-  padding:0 .25em;
-  color:#e00;
-  font-weight:bold;
-  border-radius:.25em;
-}
-.location{
   cursor: pointer;
-  z-index: 9999;
+  clear: both;
+  font-size: .75em;
+  margin-bottom: 5px;
+  padding: 0 .25em;
+  color: #e00;
+  font-weight: bold;
+  border-radius: .25em;
+}
+
+.location {
+  cursor: pointer;
+  z-index: 999;
   background-color: white;
   padding: .5rem;
   font-size: .7rem;
@@ -292,8 +339,36 @@
 // POPUP
 
 button.goToBtn {
-  padding: .5rem!important;
+  padding: .5rem !important;
   background-color: red;
   border-radius: .8rem;
   border: none;
+}
+
+// RESPONSIVE
+@media screen and (max-width: 880px) {
+  .map-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .map-frame {
+    width: 100%!important;
+    height: 65%!important;
+
+  }
+  .sidebar {
+    height: 35%!important;
+   width: 100%!important;
+  }
+  .weather {
+    z-index: 1000!important;
+    top: 22%!important;
+    left: 5%!important;
+    display: none!important;
+  }
+  .appear-weather {
+    display: block!important;
+  }
 }

@@ -397,6 +397,11 @@ export class MapComponent implements OnInit {
       this.infoAqius = "Hors norme";
     }
   }
+
+  appear() {
+    // @ts-ignore
+    document.querySelector('#weather').classList.toggle('show');
+  }
 }
 
 

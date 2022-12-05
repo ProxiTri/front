@@ -35,7 +35,8 @@
   </div>
   <div class="map-frame">
     <div id="map"><button (click)="locate()" class="location">Localiser moi !</button></div>
-    <div #weather class="weather">
+    <button class="appear-weather" (click)="appear()" style="display: none"><i class="fa-solid fa-circle-info"></i></button>
+    <div id="weather" class="weather">
       <div>
         <h4>{{weatherObject.city}}, {{weatherObject.region}} {{weatherObject.country}}</h4>
       </div>
