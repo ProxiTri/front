@@ -1,62 +1,107 @@
-<section class="gallery bg-grey">
-  <div class="container-slider">
-    <div class="img-container">
-      <ul class="slider-ul">
-        <li class="img-slider-left">
-          <img src="assets/img/img-slider-1.png" alt="Image" class="img-container" id="preview">
-          <div class="article-title">
-            <h1>Recycler avec Proxitri</h1>
-            <p>Tout le monde peut recycler à sa manière et pour ce faire, nous avons développer ProxiTri. Cet outil vous permettra de recycler efficacement vos déchets afin de réduire la pollution et le gaspillage.</p>
-            <button class="btn-more" routerLink="/map">Commencer à recycler !</button>
-          </div>
+<section>
+  <div class="container">
+    <div class="carousel">
+      <input type="radio" name="slides" checked="checked" id="slide-1">
+      <input type="radio" name="slides" id="slide-2">
+      <input type="radio" name="slides" id="slide-3">
+      <input type="radio" name="slides" id="slide-4">
+      <input type="radio" name="slides" id="slide-5">
+      <ul class="carousel__slides">
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="assets/img/img-slider-1.jpg" alt="">
+              <div>
+                <h3>Titre</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aut cum enim ex, fugiat id, illum ipsam laborum maxime modi neque nihil odio odit, porro praesentium quam sunt vitae.</p>
+                <a href="#" class="btn-yellow">En savoir plus</a>
+              </div>
+            </div>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="assets/img/img-slider-2.jpg" alt="">
+              <div>
+                <h3>Titre</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aut cum enim ex, fugiat id, illum ipsam laborum maxime modi neque nihil odio odit, porro praesentium quam sunt vitae.</p>
+                <a href="#" class="btn-yellow">En savoir plus</a>
+              </div>
+            </div>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="assets/img/img-slider-3.jpg" alt="">
+              <div>
+                <h3>Titre</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aut cum enim ex, fugiat id, illum ipsam laborum maxime modi neque nihil odio odit, porro praesentium quam sunt vitae.</p>
+                <a href="#" class="btn-yellow">En savoir plus</a>
+              </div>
+            </div>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="assets/img/img-slider-4.jpg" alt="">
+              <div>
+                <h3>Titre</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aut cum enim ex, fugiat id, illum ipsam laborum maxime modi neque nihil odio odit, porro praesentium quam sunt vitae.</p>
+                <a href="#" class="btn-yellow">En savoir plus</a>
+              </div>
+            </div>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="assets/img/img-slider-5.jpg" alt="">
+              <div>
+                <h3>Titre</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aut cum enim ex, fugiat id, illum ipsam laborum maxime modi neque nihil odio odit, porro praesentium quam sunt vitae.</p>
+                <a href="#" class="btn-yellow">En savoir plus</a>
+              </div>
+            </div>
+          </figure>
+        </li>
+      </ul>
+      <ul class="carousel__thumbnails">
+        <li>
+          <label for="slide-1">
+            <img src="assets/img/img-slider-1.jpg" alt="">
+            <h4>TITRE</h4>
+          </label>
+        </li>
+        <li>
+          <label for="slide-2">
+            <img src="assets/img/img-slider-2.jpg" alt="">
+            <h4>TITRE</h4>
+          </label>
+        </li>
+        <li>
+          <label for="slide-3">
+            <img src="assets/img/img-slider-3.jpg" alt="">
+            <h4>TITRE</h4>
+          </label>
+        </li>
+        <li>
+          <label for="slide-4">
+            <img src="assets/img/img-slider-4.jpg" alt="">
+            <h4>TITRE</h4>
+          </label>
+        </li>
+        <li>
+          <label for="slide-5">
+            <img src="assets/img/img-slider-5.jpg" alt="">
+            <h4>TITRE</h4>
+          </label>
+        </li>
+        <li>
         </li>
       </ul>
     </div>
-    <div class="img-prev">
-      <ul class="slider-ul">
-        <li class="slider-li">
-          <div class="img-slide active">
-            <img src="assets/img/img-slider-1.png" alt="Image 1" class="img-thumb" appDemo>
-            <div class="text-slider text-test">
-              <p class="title-slider">Recycler avec ProxiTri</p>
-            </div>
-          </div>
-        </li>
-        <li class="slider-li">
-          <div class="img-slide">
-            <img src="assets/img/img-slider-2.png" alt="Image 2" class="img-thumb" appDemo>
-            <div class="text-slider text-test">
-              <p class="title-slider">La pollution</p>
-            </div>
-          </div>
-        </li>
-        <li class="slider-li">
-          <div class="img-slide">
-            <img src="assets/img/img-slider-3.png" alt="Image 3" class="img-thumb" appDemo>
-            <div class="text-slider text-test">
-              <p class="title-slider">Le recyclage</p>
-            </div>
-          </div>
-        </li>
-        <li class="slider-li">
-          <div class="img-slide">
-            <img src="assets/img/img-slider-4.png" alt="Image 4" class="img-thumb" appDemo>
-            <div class="text-slider text-test">
-              <p class="title-slider">Le ramassage</p>
-            </div>
-          </div>
-        </li>
-        <li class="slider-li">
-          <div class="img-slide">
-            <img src="assets/img/img-slider-5.png" alt="Image 5" class="img-thumb" appDemo>
-            <div class="text-slider text-test">
-              <p class="title-slider">Aider</p>
-            </div>
-          </div>
-        </li>
-      </ul>
-
-    </div>
-
   </div>
 </section>
