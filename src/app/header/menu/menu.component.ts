@@ -15,10 +15,13 @@ export class MenuComponent implements OnInit {
     {
       this.mobileMenu();
     };
+    window.onload = (e) =>
+    {
+      this.mobileMenu();
+    }
   }
 
   ngOnInit(): void {
-    this.mobileMenu();
   }
 
 
