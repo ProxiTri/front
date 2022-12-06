@@ -252,6 +252,11 @@ export class MapComponent implements OnInit {
       })
   }
 
+  changePosWeatherCard() {
+    console.log('reduce')
+    document.getElementById('weather')?.classList.add('reduce-card');
+  }
+
   // AFFICHER LA POSITION DE LA PERSONNE SUR LA CARTE & DEPART DE LA PERSONNE SI RIEN DE REMPLI
   locate() {
     navigator.geolocation.getCurrentPosition((position: any) => {
@@ -351,6 +356,7 @@ export class MapComponent implements OnInit {
         L.latLng(this.arrivee)
       ]
     }).addTo(this.map);
+    this.changePosWeatherCard()
   }
 
   weatherPollutionAPI(lat: any, long: any) {
