@@ -1,14 +1,20 @@
 .top-account {
   display: flex;
   padding: 72px 0 100px;
+  @media screen and (max-width: 1390px) {
+    flex-direction: column;
+  }
 
   & .left-top {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     & h1 {
       font-size: 35px;
+      @media screen and (max-width: 1000px) {
+        margin-top: 75px;
+      }
     }
   }
 
@@ -16,6 +22,10 @@
     width: 930px;
     height: 245px;
     border-radius: 15px;
+    @media screen and (max-width: 700px) {
+      width: 350px;
+      height: 155px;
+    }
   }
 
   .pagination {
@@ -38,28 +48,72 @@
 
 .div-text-actu {
 
-
   & h3 {
     position: absolute;
     top: 13rem;
-    left: 40rem;
+    left: 53rem;
     line-height: 34px;
     color: #fff;
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 400 !important;
+    @media screen and (max-width: 1700px) {
+      left: 35rem;
+    }
+    @media screen and (max-width: 700px) {
+      top: 20rem;
+      left: 3rem;
+      font-size: 30px;
+    }
   }
 
   & p {
     position: absolute;
-    left: 42%;
-    font-size: 25px;
-    margin-top: 50px;
-    width: 49%;
+    // left: 42%;
+    left: 45%;
+    font-size: 23px;
+    margin-top: 22px;
+    // width: 49%;
+    width: 35%;
     color: #fff;
     top: 15rem;
     font-weight: 400 !important;
+    @media screen and (max-width: 700px) {
+      left: 13%;
+      font-size: 13px;
+      width: 75%;
+      top: 21rem;
+    }
+  }
+
+  & .btn-more {
+    background-color: var(--jaune2);
+    border-radius: 50px;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    width: 11%;
+    color: var(--noir);
+    position: absolute;
+    right: 13rem;
+    top: 22rem;
+
+    @media screen and (max-width: 700px) {
+      padding: 7px 18px;
+      width: 34%;
+      right: 5rem;
+      top: 26rem;
+      font-size: 13px;
+    }
+
+    .fa-arrow-right-long {
+      font-size: 30px;
+      @media screen and (max-width: 700px) {
+        font-size: 20px;
+      }
+    }
   }
 }
+
 
 
 .grpBtn {
