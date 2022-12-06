@@ -5,7 +5,7 @@
       <div class="header" (click)="showDetailsCommune()">
         <h3>{{comune.name}}</h3>
         <span>{{comune.localisationPostalCode}}</span>
-        <span *ngIf="comune.recyclingCenters != 0" class="recycling"><i class="fa-solid fa-truck-droplet"></i> Déchetterie disponible !</span>
+        <span *ngIf="comune.recyclingCenters != 0" class="recycling"><i class="fa-solid fa-truck-droplet"></i> <span>Déchetterie disponible !</span></span>
       </div>
       <div class="content" *ngFor="let recycling of comune.recyclingCenters">
         <h4>{{recycling.name}}</h4>

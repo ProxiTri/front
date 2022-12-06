@@ -6,6 +6,12 @@
 }
 .top {
   display: flex;
+  @media screen and (min-width: 300px) {
+    flex-flow: column nowrap;
+  }
+  @media screen and (min-width: 900px) {
+    flex-flow: row nowrap;
+  }
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8rem;
@@ -42,21 +48,34 @@ h2 {
 }
 .bottom {
   display: flex;
+  @media screen and (min-width: 300px) {
+    flex-flow: column nowrap;
+    gap: 2rem;
+  }
+  @media screen and (min-width: 500px) {
+    flex-flow: row wrap;
+  }
+  @media screen and (min-width: 900px) {
+    flex-flow: row nowrap;
+  }
   align-items: center;
   justify-content: space-between;
   .miniCard {
     padding: .8rem;
     border-radius: .8rem;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     background-color: var(--vert);
     color: white;
-    h3 {
+    min-width: 200px;
+    min-height: 200px;
+    h3, i {
       font-size: 1rem;
       font-weight: 400;
       max-width: 120px;
-    }
-    img{
-      width: 30%;
     }
   }
 }
