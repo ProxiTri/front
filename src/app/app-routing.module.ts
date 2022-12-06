@@ -46,7 +46,7 @@ const routes: Routes = [
   },
   //QR CODE
   {
-    path: 'qr-code',
+    path: 'scan',
     component: QrCodeComponent
   },
   //ACCOUNT

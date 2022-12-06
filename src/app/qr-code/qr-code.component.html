@@ -1,34 +1,35 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-<div class="fullPage" >
+<div class="fullPage">
   <div class="div-cam">
     <div id="popup1" class="overlay" *ngIf="productAr != null && productAr!= undefined">
       <div class="left-section">
-      <div class="title-popup">
-      <h1>MON PRODUIT RECYCLABLE</h1>
-      </div>
-      <div class="name-section">
-        <div class="name-container">
-      NOM : {{ productAr.marque }} <br>
+        <div class="title-popup">
+          <h1>MON PRODUIT RECYCLABLE</h1>
         </div>
-      </div>
-      <div class="category-section">
-        <div class="category-container">
-      CATEGORIE : {{ productAr.packaging }} <br>
+        <div class="name-section">
+          <div class="name-container">
+            NOM : {{ productAr.marque }} <br>
+          </div>
         </div>
-      </div>
-      <div class="img-section">
-      <img src="{{ productAr.image }}">
-      </div>
+        <div class="category-section">
+          <div class="category-container">
+            CATEGORIE : {{ productAr.packaging }} <br>
+          </div>
+        </div>
+        <div class="img-section">
+          <img src="{{ productAr.image }}">
+        </div>
       </div>
       <div class="line"></div>
       <div class="right-section">
-        <button class="btnView3 bg-green" id="verre" ><p>Afficher les bennes à verre pour mon {{ productAr.marque }} </p><img src="assets/img/icons8-broken-bottle-96.png" alt=""></button>
-        <button class="btnView3 bg-blue" (click)="again()" id="plastic"><p>Scanner un autre produit </p><img src="assets/img/qr-code.png" alt=""></button>
+        <button class="btnView3 bg-green" id="verre"><p>Afficher les bennes à verre pour mon {{ productAr.marque }} </p>
+          <img src="assets/img/icons8-broken-bottle-96.png" alt=""></button>
+        <button class="btnView3 bg-blue" (click)="again()" id="plastic"><p>Scanner un autre produit </p><img
+          src="assets/img/qr-code.png" alt=""></button>
       </div>
     </div>
-
 
     <div class="overlay" id="popup2" [style.display]="toggle3 ? 'flex' : 'none'">
       <div class="progress-spinner" role="progressbar">
@@ -37,55 +38,54 @@
         </svg>
       </div>
     </div>
-  <div class="camera">
-    <div class="progress-spinner" role="progressbar" [style.display]="toggle4 ? 'flex' : 'none'">
-      <svg focusable="false" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100">
-        <circle cx="50%" cy="50%" r="45"></circle>
-      </svg>
-    </div>
-    <barcode-scanner-livestream
-      [type]="['ean','upc']"
-      (valueChanges)="onValueChanges($event)"
-    ></barcode-scanner-livestream>
-  </div></div>
-
-  <div class="div-info">
-  <div class="div1">
-    <div class="left-content" ><img class="img-div3" src="assets/img/scan-de-codebar.jpg">
-    </div>
-
-  <div class="right-content">
-    <button class="btnView bg-green" data-aos="fade-left" data-aos-duration="1000">
-      <img class="img-icon1" src="assets/img/qr-code.png" data-aos="fade-up" data-aos-duration="3000">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </button>
-  </div>
-  </div>
-
-
-  <div class="div2">
-    <div class="left-content">
-      <button class="btnView-2 bg-green" data-aos="fade-right" data-aos-duration="1000"><img class="img-icon2" src="assets/img/map-icon.png" data-aos="fade-up" data-aos-duration="3000">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      </button>
-    </div>
-
-    <div class="right-content"><img class="img-div2" src="assets/img/position-gps.jpeg">
+    <div class="camera">
+      <div class="progress-spinner" role="progressbar" [style.display]="toggle4 ? 'flex' : 'none'">
+        <svg focusable="false" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100">
+          <circle cx="50%" cy="50%" r="45"></circle>
+        </svg>
+      </div>
+      <barcode-scanner-livestream
+        [type]="['ean','upc']"
+        (valueChanges)="onValueChanges($event)"
+      ></barcode-scanner-livestream>
     </div>
   </div>
 
-  <div class="div3">
-    <div class="left-content">
-      <img class="img-div3" src="assets/img/Tri-sélectif.jpeg">
+  <div class="div-info" *ngIf="productAr == null && productAr == undefined">
+    <div class="box">
+      <div class="left-content"><img class="img-content" src="assets/img/scan-de-codebar.jpg"></div>
+      <div class="right-content">
+        <button class="btnView bg-green" data-aos="fade-left" data-aos-duration="1000">
+          <img class="img-icon" src="assets/img/qr-code.png" data-aos="fade-up" data-aos-duration="3000">
+           Scannez le code barre de votre produit pour savoir le type de bennes à utiliser pour le trier.
+        </button>
+      </div>
     </div>
 
-    <div class="right-content">
-      <button class="btnView bg-green" data-aos="fade-left" data-aos-duration="1000"><img class="img-icon3" src="assets/img/recycle-icon.png" data-aos="fade-up" data-aos-duration="3000">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      </button>
+    <div class="box">
+      <div class="right-content">
+        <button class="btnView bg-green" data-aos="fade-right" data-aos-duration="1000">
+          <img class="img-icon" src="assets/img/map-icon.png" data-aos="fade-up" data-aos-duration="3000">
+          Grace à notre carte interactive, rerouvez les différentes bennes à tri les plus proches de chez vous.
+          En quelques clics, vous pourrez savoir où vous rendre pour trier vos déchets.
+        </button>
+      </div>
+      <div class="left-content"><img class="img-content" src="assets/img/position-gps.jpeg">
+      </div>
     </div>
 
-  </div>
+    <div class="box">
+      <div class="left-content">
+        <img class="img-content" src="assets/img/Tri-sélectif.jpeg">
+      </div>
+
+      <div class="right-content">
+        <button class="btnView bg-green" data-aos="fade-left" data-aos-duration="1000">
+          <img class="img-icon" src="assets/img/recycle-icon.png" data-aos="fade-up" data-aos-duration="3000">
+          Devenez un expert du tri sélectif grâce à notre application.
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
