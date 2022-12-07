@@ -1,40 +1,39 @@
- <section id="contact">
-    <div class="contact-box">
-      <div class="contact-links">
-        <h2>Formulaire de contact</h2>
+<section id="contact">
+  <div class="contact-box">
+    <div class="contact-links">
+      <h2>Formulaire de contact</h2>
 
-        <div class="links">
-          <div class="link">
-            <a><img src="https://i.postimg.cc/m2mg2Hjm/linkedin.png" alt="linkedin"></a>
-          </div>
-          <div class="link">
-            <a><img src="https://i.postimg.cc/YCV2QBJg/instagram.png" alt="github"></a>
-          </div>
-          <div class="link">
-            <a><img src="https://i.postimg.cc/W4Znvrry/codepen.png" alt="codepen"></a>
-          </div>
-          <div class="link">
-            <a><img src="https://i.postimg.cc/NjLfyjPB/email.png" alt="email"></a>
-          </div>
-        </div>
-      </div>
-      <div class="contact-form-wrapper">
-        <form>
-          <div class="form-item">
-            <input type="text" name="email" required>
-            <label>Email:</label>
-          </div>
-          <div class="form-item">
-            <input type="text" name="subject" required>
-            <label>Sujet:</label>
-          </div>
-          <div class="form-item">
-            <textarea class="" name="message" required></textarea>
-            <label>Message:</label>
-          </div>
-          <button class="submit-btn">Send</button>
-        </form>
-      </div>
+      <!--        <div class="links">-->
+      <!--          <div class="link">-->
+      <!--            <a><img src="assets/img/social/enveloppe.png" alt="linkedin"></a>-->
+      <!--          </div>-->
+      <!--          <div class="link">-->
+      <!--            <a><img src="assets/img/social/facebook.png" alt="github"></a>-->
+      <!--          </div>-->
+      <!--          <div class="link">-->
+      <!--            <a><img src="assets/img/social/instagram.png" alt="codepen"></a>-->
+      <!--          </div>-->
+      <!--          <div class="link">-->
+      <!--            <a><img src="assets/img/social/linkedin.png" alt="email"></a>-->
+      <!--          </div>-->
+      <!--        </div>-->
     </div>
-  </section>
-
+    <div class="contact-form-wrapper">
+      <form [formGroup]="form" (ngSubmit)="send()" class="flex flex-col w-full mt-8">
+        <div class="form-item">
+          <input formControlName="sujet" type="text" id="sujet" name="sujet"/>
+          <label>Sujet:</label>
+        </div>
+        <div class="form-item">
+          <input formControlName="email" type="text" name="email" required>
+          <label>Email:</label>
+        </div>
+        <div class="form-item">
+          <textarea formControlName="message" id="message" name="message"></textarea>
+          <label>Message:</label>
+        </div>
+        <button class="submit-btn">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
