@@ -9,6 +9,7 @@ import {QrCodeComponent} from "./qr-code/qr-code.component";
 import {AccountComponent} from "./account/account.component";
 import {ActuComponent} from "./account/actu/actu.component";
 import {RegisterComponent} from "./register/register.component";
+import {ContactComponent} from "./contact/contact.component";
 
 const routes: Routes = [
   // HOME
@@ -58,6 +59,12 @@ const routes: Routes = [
   {
     path: "actu",
     component: ActuComponent
+  },
+
+  //CONTACT
+  {
+    path: "contact",
+    component: ContactComponent,
   }
 
 

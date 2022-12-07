@@ -153,11 +153,11 @@ section {
       }
 
       .carousel__thumbnails {
+        overflow-x: hidden;
         list-style: none;
         padding: 0;
         margin: 0;
         display: flex;
-        overflow: scroll;
         @media screen and (min-width: 300px) {
           flex-flow: row nowrap;
           height: 400px;
