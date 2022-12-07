@@ -25,7 +25,6 @@ import { LoginComponent } from './login/login.component';
 import { InfosComponent } from './pollution/infos/infos.component';
 import { FooterComponent } from './footer/footer.component';
 import { DemoDirective } from './demo.directive';
-import { NgxBarcodeModule } from 'ngx-barcode';
 import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
 import { RegisterComponent } from './register/register.component';
 import { CommuneComponent } from './commune/commune.component';
@@ -63,7 +62,6 @@ import { ContactComponent } from './contact/contact.component';
     AppRoutingModule,
     HttpClientModule,
     BarcodeScannerLivestreamModule,
-    NgxBarcodeModule,
     FormsModule,
     ReactiveFormsModule
   ],
