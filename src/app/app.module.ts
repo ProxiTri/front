@@ -28,6 +28,8 @@ import { DemoDirective } from './demo.directive';
 import { NgxBarcodeModule } from 'ngx-barcode';
 import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
 import { RegisterComponent } from './register/register.component';
+import {CarouselModule} from "ngx-owl-carousel-o";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -52,7 +54,7 @@ import { RegisterComponent } from './register/register.component';
     FooterComponent,
     DemoDirective,
     QrCodeComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,9 @@ import { RegisterComponent } from './register/register.component';
     BarcodeScannerLivestreamModule,
     NgxBarcodeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CarouselModule,
+    BrowserAnimationsModule
   ],
   providers: [
 

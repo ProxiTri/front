@@ -77,6 +77,9 @@
     color: #fff;
     top: 15rem;
     font-weight: 400 !important;
+    @media screen and (max-width: 1550px) {
+      left: 38%;
+    }
     @media screen and (max-width: 700px) {
       left: 13%;
       font-size: 13px;
@@ -91,12 +94,15 @@
     padding: 15px 25px;
     display: flex;
     align-items: center;
-    width: 11%;
+    width: 13%;
     color: var(--noir);
     position: absolute;
     right: 13rem;
     top: 22rem;
 
+    @media screen and (max-width: 1550px) {
+      right: 9rem;
+    }
     @media screen and (max-width: 700px) {
       padding: 7px 18px;
       width: 34%;
@@ -113,7 +119,6 @@
     }
   }
 }
-
 
 
 .grpBtn {

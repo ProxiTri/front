@@ -41,16 +41,17 @@
       display: flex;
 
       & .astuces-slide {
-        width: 15px;
-        height: 15px;
+        //width: 15px;
+        //height: 15px;
         cursor: pointer;
         margin-left: 15px;
-        border-radius: 50px;
-        background-color: #D9D9D9;
+        //border-radius: 50px;
+        //background-color: #D9D9D9;
       }
 
-      & .astuces-slide.active {
-        background-color: #000000;
+      & .active {
+
+        //background-color: #000000;
       }
     }
   }
