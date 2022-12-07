@@ -3,12 +3,9 @@ header {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   width: 100%;
   @media screen and (min-width: 300px) {
-    z-index: 999;
-    position: unset;
     background: white;
   }
   @media screen and (min-width: 768px) {
-    position: inherit;
     background: transparent;
   }
   .wrap {
