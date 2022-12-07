@@ -2,29 +2,59 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <div class="fullPage">
+
   <div class="div-cam">
-    <div id="popup1" class="overlay" *ngIf="productAr != null && productAr!= undefined">
+    <div id="popup1" class="overlay" [style.display]="toggle7 ? 'flex' : 'none'" *ngIf="productAr != null && productAr!= undefined || productCode != null && productCode!= undefined">
+      <div class="title-popup">
+        <h1>MON PRODUIT RECYCLABLE</h1>
+      </div>
+
       <div class="left-section">
-        <div class="title-popup">
-          <h1>MON PRODUIT RECYCLABLE</h1>
-        </div>
-        <div class="name-section">
+        <div class="name-section" [style.display]="toggle6 ? 'flex' : 'none'">
+          <div class="name-title">
+            <p id="nameTitle">NOM :</p>
+          </div>
           <div class="name-container">
-            NOM : {{ productAr.marque }} <br>
+            {{ productAr.marque }} <br>
           </div>
         </div>
-        <div class="category-section">
+
+        <form [formGroup]="codebarForm" (ngSubmit)="onSubmit()">
+        <div class="column-6 form-select" [style.display]="toggle5 ? 'flex' : 'none'">
+          <select (change)="changeCategory($event)" formControlName="categoryName">
+            <option value="">Choisir Un Conditionnement</option>
+            <option *ngFor="let condit of Condit" [ngValue]="condit">
+              {{ condit }}
+            </option>
+          </select>
+          <button type="submit" class="btn btn-danger btn-lg btn-block">
+            Submit
+          </button>
+        </div>
+        </form>
+
+        <div class="category-section" [style.display]="toggle5 ? 'none' : 'flex'">
           <div class="category-container">
-            CATEGORIE : {{ productAr.packaging }} <br>
+            <div class="category-title" [style.display]="toggle5 ? 'none' : 'flex'">
+              <p id="categoryTitle">CATEGORIE : </p>
+            </div>
+            <div class="category-content">
+            {{ productAr.packaging }} <br>
+          </div>
           </div>
         </div>
+
         <div class="img-section">
           <img src="{{ productAr.image }}">
         </div>
       </div>
+
       <div class="line"></div>
+
       <div class="right-section">
+
         <button class="btnView3 bg-green" id="verre"><p>Afficher les bennes à verre pour mon {{ productAr.marque }} </p>
+
           <img src="assets/img/icons8-broken-bottle-96.png" alt=""></button>
         <button class="btnView3 bg-blue" (click)="again()" id="plastic"><p>Scanner un autre produit </p><img
           src="assets/img/qr-code.png" alt=""></button>
@@ -51,13 +81,24 @@
     </div>
   </div>
 
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit2()">
+    <div class="formular">
+  <p id="form-manual">Entrez votre codebar manuellement</p>
+  <div class="inputContainer">
+  <input class="form" type="text" formControlName="productName" placeholder="exemple : 3168930159896">
+</div>
+<button type="submit" id="btnSearch" class="btnView bg-yellow text-black" id="manual-search"><p>Rechercher</p></button>
+</div>
+</form>
+
+
   <div class="div-info" *ngIf="productAr == null && productAr == undefined">
     <div class="box">
       <div class="left-content"><img class="img-content" src="assets/img/scan-de-codebar.jpg"></div>
       <div class="right-content">
         <button class="btnView bg-green" data-aos="fade-left" data-aos-duration="1000">
           <img class="img-icon" src="assets/img/qr-code.png" data-aos="fade-up" data-aos-duration="3000">
-           Scannez le code barre de votre produit pour savoir le type de bennes à utiliser pour le trier.
+          Scannez le code barre de votre produit pour savoir le type de bennes à utiliser pour le trier.
         </button>
       </div>
     </div>
