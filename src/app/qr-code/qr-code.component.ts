@@ -1,6 +1,7 @@
 import { Component, ViewChild, AfterViewInit } from "@angular/core";
 import { BarcodeScannerLivestreamComponent } from "ngx-barcode-scanner";
 import { HttpClient } from '@angular/common/http';
+// @ts-ignore
 import AOS from "aos";
 
 
@@ -38,6 +39,7 @@ export class QrCodeComponent implements AfterViewInit {
     this.toggle2 = true;
     this.data = result.codeResult.code;
     this.httpClient.get('https://world.openfoodfacts.org/api/v2/search?code='+this.data).subscribe((data:any)=>{
+      console.log(data)
   //  this.product = data.products[0];
     if(data.products.length != 0 )
     {

@@ -30,7 +30,6 @@
           src="assets/img/qr-code.png" alt=""></button>
       </div>
     </div>
-
     <div class="overlay" id="popup2" [style.display]="toggle3 ? 'flex' : 'none'">
       <div class="progress-spinner" role="progressbar">
         <svg focusable="false" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100">
@@ -44,10 +43,7 @@
           <circle cx="50%" cy="50%" r="45"></circle>
         </svg>
       </div>
-      <barcode-scanner-livestream
-        [type]="['ean','upc']"
-        (valueChanges)="onValueChanges($event)"
-      ></barcode-scanner-livestream>
+      <barcode-scanner-livestream [type]="['ean','upc']" (valueChanges)="onValueChanges($event)"></barcode-scanner-livestream>
     </div>
   </div>
 
