@@ -1,9 +1,13 @@
-import {Component, ViewChild, AfterViewInit} from "@angular/core";
+import {Component, ViewChild, AfterViewInit, Input} from "@angular/core";
 import {BarcodeScannerLivestreamComponent} from "ngx-barcode-scanner";
 import {HttpClient} from '@angular/common/http';
 // @ts-ignore
 import AOS, {refresh} from "aos";
 import {FormBuilder, Validators} from "@angular/forms";
+import { Router } from '@angular/router';
+import { UpperCasePipe } from '@angular/common';
+
+
 
 
 @Component({
@@ -15,10 +19,12 @@ export class QrCodeComponent implements AfterViewInit {
   @ViewChild(BarcodeScannerLivestreamComponent)
   barcodeScanner: BarcodeScannerLivestreamComponent | undefined;
 
+  state: any = {};
   qrCode: any;
   data: any
   product: any;
   productAr: any;
+  toggle8 = true;
   toggle7 = true;
   toggle6 = true;
   toggle5 = false;
@@ -33,10 +39,12 @@ export class QrCodeComponent implements AfterViewInit {
   categoryName: any;
   name: any;
   productCode: any;
+  uppercaseParams: any;
 
 
   ngAfterViewInit() {
-    new Promise((resolve, reject) => {
+this.toggle8 = false;
+new Promise((resolve, reject) => {
       // @ts-ignore
       resolve(this.barcodeScanner.start())
     }).then(() => {
@@ -80,13 +88,14 @@ export class QrCodeComponent implements AfterViewInit {
     });
   }
 
-  constructor(private httpClient: HttpClient, public fb: FormBuilder) {}
+  constructor(private httpClient: HttpClient, public fb: FormBuilder, private router: Router, private upperCasePipe: UpperCasePipe ) {}
 
   codebarForm = this.fb.group({
     categoryName: ['', [Validators.required]],
   });
 
   changeCategory(event: any) {
+    console.log(event.target.value)
     this.categoryName?.setValue(event.target.value, {
       onlySelf: true,
     });
@@ -111,7 +120,11 @@ export class QrCodeComponent implements AfterViewInit {
   }
 
   onSubmit(): void {
-    this.isSubmitted = true;
+    this.uppercaseParams = this.upperCasePipe.transform(this.codebarForm.value.categoryName)
+    this.router.navigate(
+      ['/map'],
+      { queryParams: { search:  this.uppercaseParams } }
+    );
     if (!this.codebarForm.valid) {
       false;
     } else {
@@ -148,10 +161,7 @@ export class QrCodeComponent implements AfterViewInit {
       }
 
     })
-    // this.isSubmitted = true;
-    // if (!this.productForm.valid) {
-    //   false;
-    // }
+
     if (this.productAr == null) {
       this.toggle3 = true;
     } else {
@@ -159,5 +169,14 @@ export class QrCodeComponent implements AfterViewInit {
     }
 
   }
+
+displayBin(data:any){
+console.log(data.indexOf('Métal') > -1);
+console.log(data.indexOf('Plastique') > -1);
+console.log(this.data)
+
+
+}
+
 }
 
