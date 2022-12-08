@@ -8,11 +8,13 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 export class MenuComponent implements OnInit {
 
   mobile: boolean = false;
+  isAdmin: boolean = false;
+  isLogged: boolean = false;
   @ViewChild('menu') menu: ElementRef | undefined;
   @ViewChild('menuButton') menuButton: ElementRef | undefined;
+
   constructor() {
-    window.onresize = (e) =>
-    {
+    window.onresize = (e) => {
       this.mobileMenu();
     };
     window.onload = (e) =>
@@ -22,9 +24,31 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.mobileMenu();
+    this.isAdminCheck();
   }
 
+  ngAfterViewChecked() {
+    this.isAdminCheck();
+  }
 
+  isAdminCheck() {
+    sessionStorage.getItem('roles')?.split(',').forEach((value) => {
+      if (value === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+        this.isLogged = true;
+        return;
+      } else if (value === 'ROLE_USER') {
+        this.isAdmin = false;
+        this.isLogged = true;
+        return;
+      } else {
+        this.isAdmin = false;
+        this.isLogged = false;
+        return;
+      }
+    })
+  }
 
   mobileMenu() {
     if (window.innerWidth <= 900) {
@@ -38,8 +62,8 @@ export class MenuComponent implements OnInit {
 
   mobileMenuToggle(e: MouseEvent) {
     e.preventDefault();
-      this.menuButton?.nativeElement.classList.toggle('fa-close');
-      this.menu?.nativeElement.classList.toggle('mobile');
+    this.menuButton?.nativeElement.classList.toggle('fa-close');
+    this.menu?.nativeElement.classList.toggle('mobile');
   }
 
 }
