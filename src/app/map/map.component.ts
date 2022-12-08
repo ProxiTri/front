@@ -1,6 +1,5 @@
 // Ajouter OnInit pour effectuer des opérations à l'initialisation du composant.
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import  'leaflet.markercluster';
@@ -8,6 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import {AuthService} from "../../utils/auth.service";
 import {WasteService} from "../../utils/waste.service";
 import { range, filter, map } from 'rxjs';
+import {ExternalService} from "../../utils/external.service";
 
 
 @Component({
@@ -18,8 +18,7 @@ import { range, filter, map } from 'rxjs';
 
 
 export class MapComponent implements OnInit {
-  order: any;
-  constructor(private http: HttpClient, private router: ActivatedRoute, private authS: AuthService, private wasteS: WasteService) {
+  constructor(private router: ActivatedRoute, private authS: AuthService, private wasteS: WasteService, private externalS: ExternalService) {
   }
 
   /////////////////////// VARIABLES ///////////////////////////
@@ -291,7 +290,6 @@ export class MapComponent implements OnInit {
   }
 
   changePosWeatherCard() {
-    console.log('reduce')
     document.getElementById('weather')?.classList.add('reduce-card');
   }
 
@@ -308,11 +306,10 @@ export class MapComponent implements OnInit {
         .addTo(this.map);
       this.position = 'lat :' + position.coords.latitude + 'long :' + position.coords.longitude;
       this.departCoordonate = [position.coords.latitude, position.coords.longitude];
-      this.http.get('https://api-adresse.data.gouv.fr/reverse/?lon='+position.coords.longitude+'&lat='+position.coords.latitude).subscribe((data: any) => {
+      this.externalS.getAdressFromGeoPoint(position.coords.latitude, position.coords.longitude).subscribe((data: any) => {
         this.departLabel = data.features[0].properties.label;
-      });
+      })
       this.weatherPollutionAPI(position.coords.latitude, position.coords.longitude);
-
 
     }, (error: any) => {
       alert(error.message)
@@ -327,22 +324,22 @@ export class MapComponent implements OnInit {
     L.marker([lat, long],
       {icon: iconPlace})
       .addTo(this.map);
-    this.http.get('https://api-adresse.data.gouv.fr/reverse/?lon='+long+'&lat='+lat).subscribe((data: any) => {
+    this.externalS.getAdressFromGeoPoint(lat, long).subscribe((data: any) => {
       this.departLabel = data.features[0].properties.label;
-    });
+    })
     this.weatherPollutionAPI(lat, long);
   }
 
   departProp() {
-    this.http.get('http://api-adresse.data.gouv.fr/search?q=' + this.departLabel + '&type=&autocomplete=1').subscribe((data: any) => {
+      this.externalS.searchAdress(this.departLabel).subscribe((data: any) => {
       this.propositionsDepart = data.features;
       this.departCoordonate = [data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]];
-    });
+    })
   }
 
   // DEPART PAR LA RECHERCHE
   depart2(label: any) {
-    this.http.get('http://api-adresse.data.gouv.fr/search?q=' + label).subscribe((data: any) => {
+    this.externalS.searchAdress(label).subscribe((data: any) => {
       this.propositionsDepart = [];
       this.departLabel = label;
       this.departCoordonate = [data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]];
@@ -351,8 +348,7 @@ export class MapComponent implements OnInit {
 
   // AFFICHAGE DES SUGGESTIONS D'ARRIVEE SELON CE QUE LA PERSONNE RECHERCHE
   arriveProp() {
-    // console.log(this.arrivee)
-    this.http.get('http://api-adresse.data.gouv.fr/search?q=' + this.arriveeLabel + '&type=&autocomplete=1').subscribe((data: any) => {
+    this.externalS.searchAdress(this.arriveeLabel).subscribe((data: any) => {
       this.propositions = data.features;
       this.arrivee = [data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]];
     });
@@ -360,7 +356,7 @@ export class MapComponent implements OnInit {
 
   // ARRIVEE PAR LA RECHERCHER
   arrive(label: any) {
-    this.http.get('http://api-adresse.data.gouv.fr/search?q=' + label).subscribe((data: any) => {
+    this.externalS.searchAdress(label).subscribe((data: any) => {
       this.propositions = [];
       this.arriveeLabel = label;
       this.arrivee = [data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]];
@@ -398,13 +394,12 @@ export class MapComponent implements OnInit {
   }
 
   weatherPollutionAPI(lat: any, long: any) {
-    this.http.get(`http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=256c6e2d-e90b-4449-adc0-57a4876fb7d0`).subscribe((res: any) => {
+    this.externalS.getWeatherFromGeoPoint(lat, long).subscribe((res: any) => {
       this.weatherPollutionActions(res);
     })
   }
 
   weatherPollutionActions(res: any) {
-    // console.log(res.data);
     this.weatherObject = {
       image: `https://www.airvisual.com/images/${res.data.current.weather.ic}.png`,
       temperature: `${res.data.current.weather.tp}°C`,

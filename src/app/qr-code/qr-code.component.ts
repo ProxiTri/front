@@ -127,7 +127,6 @@ new Promise((resolve, reject) => {
     );
     if (!this.codebarForm.valid) {
       false;
-    } else {
     }
   }
 
@@ -160,7 +159,7 @@ new Promise((resolve, reject) => {
         image: this.product.image_front_small_url
       }
 
-    })
+    });
 
     if (this.productAr == null) {
       this.toggle3 = true;

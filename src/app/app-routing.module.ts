@@ -4,7 +4,6 @@ import {HomepageComponent} from "./homepage/homepage.component";
 import {LoginComponent} from "./login/login.component";
 import {MapComponent} from "./map/map.component";
 import {PollutionComponent} from "./pollution/pollution.component";
-import {GainsComponent} from "./gains/gains.component";
 import {QrCodeComponent} from "./qr-code/qr-code.component";
 import {AccountComponent} from "./account/account.component";
 import {ActuComponent} from "./account/actu/actu.component";
@@ -39,11 +38,6 @@ const routes: Routes = [
   {
     path: 'map',
     component: MapComponent
-  },
-  //GAINS
-  {
-    path: 'gains',
-    component: GainsComponent
   },
   //QR CODE
   {
