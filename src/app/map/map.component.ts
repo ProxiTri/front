@@ -6,6 +6,7 @@ import  'leaflet.markercluster';
 import {ActivatedRoute} from "@angular/router";
 import {AuthService} from "../../utils/auth.service";
 import {WasteService} from "../../utils/waste.service";
+import { range, filter, map } from 'rxjs';
 import {ExternalService} from "../../utils/external.service";
 
 
@@ -50,6 +51,9 @@ export class MapComponent implements OnInit {
   // LE NOM DU DEPART
   departLabel: any;
 
+  // URL DES ICONES
+  iconUrl:any
+  category:any
 
   // PROPOSITIONS D'ARRIVEE
   propositions: any;
@@ -67,6 +71,7 @@ export class MapComponent implements OnInit {
 
   // CHARGEMENT DE LA CARTE AVEC TOUS LES POINTS
   ngOnInit() {
+  
     // GEOLOACTION DE LA PERSONNE
     navigator.geolocation.getCurrentPosition((position: any) => {
       this.departCoordonate = [position.coords.latitude, position.coords.longitude];
@@ -96,7 +101,39 @@ export class MapComponent implements OnInit {
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: 'Map'
         }).addTo(this.map);
+
+        this.router.queryParams.subscribe(params => {
+          if (params['search'] == "VERRE") {
+            this.category = params['search']
+            this.iconUrl = 'http://localhost:4200/assets/img/icons8-broken-bottle-96.png';
+            console.log(this.category, this.iconUrl)
+            this.filterWaste(this.iconUrl, this.category)
+          }else{
+            console.log("produit en verre non recconu")
+          }
+
+          if (params['search'] == "PLASTIQUE") {
+            console.log("ok")
+          }else{
+            console.log("produit en plastique non recconu")
+          }
+
+          if (params['search'] == "PAPIER") {
+            console.log("ok")
+          }else{
+            console.log("produit en papier non recconu")
+          }
+
+          if (params['search'] == "ORDURES") {
+            console.log("ok")
+          }else{
+            console.log("ordures ménagères non recconues")
+          }
+        })
+
       })
+
+
     this.weatherPollutionAPI(46.160329, -1.151139);
   }
 
@@ -294,7 +331,7 @@ export class MapComponent implements OnInit {
   }
 
   departProp() {
-   this.externalS.searchAdress(this.departLabel).subscribe((data: any) => {
+      this.externalS.searchAdress(this.departLabel).subscribe((data: any) => {
       this.propositionsDepart = data.features;
       this.departCoordonate = [data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]];
     })
@@ -405,7 +442,5 @@ export class MapComponent implements OnInit {
     document.querySelector('#weather').classList.toggle('show');
   }
 }
-
-
 
 
