@@ -296,7 +296,7 @@ export class MapComponent implements OnInit {
   }
 
   departProp() {
-    this.http.get('http://api-adresse.data.gouv.fr/search?q=' + this.departLabel + '&type=&autocomplete=1').subscribe((data: any) => {
+    this.http.get('https://api-adresse.data.gouv.fr/search?q=' + this.departLabel + '&type=&autocomplete=1').subscribe((data: any) => {
       this.propositionsDepart = data.features;
       this.departCoordonate = [data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]];
     });
@@ -304,7 +304,7 @@ export class MapComponent implements OnInit {
 
   // DEPART PAR LA RECHERCHE
   depart2(label: any) {
-    this.http.get('http://api-adresse.data.gouv.fr/search?q=' + label).subscribe((data: any) => {
+    this.http.get('https://api-adresse.data.gouv.fr/search?q=' + label).subscribe((data: any) => {
       this.propositionsDepart = [];
       this.departLabel = label;
       this.departCoordonate = [data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]];
@@ -314,7 +314,7 @@ export class MapComponent implements OnInit {
   // AFFICHAGE DES SUGGESTIONS D'ARRIVEE SELON CE QUE LA PERSONNE RECHERCHE
   arriveProp() {
     // console.log(this.arrivee)
-    this.http.get('http://api-adresse.data.gouv.fr/search?q=' + this.arriveeLabel + '&type=&autocomplete=1').subscribe((data: any) => {
+    this.http.get('https://api-adresse.data.gouv.fr/search?q=' + this.arriveeLabel + '&type=&autocomplete=1').subscribe((data: any) => {
       this.propositions = data.features;
       this.arrivee = [data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]];
     });
@@ -322,7 +322,7 @@ export class MapComponent implements OnInit {
 
   // ARRIVEE PAR LA RECHERCHER
   arrive(label: any) {
-    this.http.get('http://api-adresse.data.gouv.fr/search?q=' + label).subscribe((data: any) => {
+    this.http.get('https://api-adresse.data.gouv.fr/search?q=' + label).subscribe((data: any) => {
       this.propositions = [];
       this.arriveeLabel = label;
       this.arrivee = [data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]];
@@ -360,7 +360,7 @@ export class MapComponent implements OnInit {
   }
 
   weatherPollutionAPI(lat: any, long: any) {
-    this.http.get(`http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=256c6e2d-e90b-4449-adc0-57a4876fb7d0`).subscribe((res: any) => {
+    this.http.get(`https://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=256c6e2d-e90b-4449-adc0-57a4876fb7d0`).subscribe((res: any) => {
       this.weatherPollutionActions(res);
     })
   }
