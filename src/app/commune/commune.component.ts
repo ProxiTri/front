@@ -25,7 +25,6 @@ export class CommuneComponent implements OnInit {
   async getCommunes(token: string) {
     this.communeS.getCommunes(token).subscribe((data: any) => {
       this.communesArr = data;
-      console.log(this.communesArr);
     });
   }
 
