@@ -1,6 +1,5 @@
 // Ajouter OnInit pour effectuer des opérations à l'initialisation du composant.
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import  'leaflet.markercluster';
@@ -18,7 +17,7 @@ import {ExternalService} from "../../utils/external.service";
 
 
 export class MapComponent implements OnInit {
-  constructor(private http: HttpClient, private router: ActivatedRoute, private authS: AuthService, private wasteS: WasteService, private externalS: ExternalService) {
+  constructor(private router: ActivatedRoute, private authS: AuthService, private wasteS: WasteService, private externalS: ExternalService) {
   }
 
   /////////////////////// VARIABLES ///////////////////////////
