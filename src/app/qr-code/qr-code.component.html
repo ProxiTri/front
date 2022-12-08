@@ -54,7 +54,9 @@
 
       <div class="line"></div>
       <div class="right-section">
-        <button class="btnView3 bg-green" id="verre"><p>Afficher les bennes à verre pour mon {{ productAr.marque }} </p>
+
+        <button class="btnView3 bg-green" id="verre" (click)="displayBin(productAr.packaging)"><p>Afficher les bennes à verre pour mon {{ productAr.marque }} </p>
+
           <img src="assets/img/icons8-broken-bottle-96.png" alt=""></button>
         <button class="btnView3 bg-blue" (click)="again()" id="plastic"><p>Scanner un autre produit </p><img
           src="assets/img/qr-code.png" alt=""></button>
@@ -78,8 +80,7 @@
           <h1>C'est parti ! </h1>
           <!--          <img src="assets/img/icons8-lecteur-de-codes-barres-64.png">-->
         </div>
-        <barcode-scanner-livestream [type]="['ean']"
-                                    (valueChanges)="onValueChanges($event)"></barcode-scanner-livestream>
+        <barcode-scanner-livestream [type]="['ean']" (valueChanges)="onValueChanges($event)"></barcode-scanner-livestream>
       </div>
 
     </div>
