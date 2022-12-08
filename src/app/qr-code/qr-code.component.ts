@@ -4,11 +4,8 @@ import {HttpClient} from '@angular/common/http';
 // @ts-ignore
 import AOS, {refresh} from "aos";
 import {FormBuilder, Validators} from "@angular/forms";
-import { Router } from '@angular/router';
-import { UpperCasePipe } from '@angular/common';
-
-
-
+import {Router} from '@angular/router';
+import {UpperCasePipe} from '@angular/common';
 
 @Component({
   selector: "app-qr-code",
@@ -43,8 +40,8 @@ export class QrCodeComponent implements AfterViewInit {
 
 
   ngAfterViewInit() {
-this.toggle8 = false;
-new Promise((resolve, reject) => {
+    this.toggle8 = false;
+    new Promise((resolve, reject) => {
       // @ts-ignore
       resolve(this.barcodeScanner.start())
     }).then(() => {
@@ -68,7 +65,6 @@ new Promise((resolve, reject) => {
       }
       // @ts-ignore
       this.barcodeScanner.stop();
-
       this.productAr = {
         marque: this.product.brands ?? null,
         packaging: this.product.packaging ?? null,
@@ -95,7 +91,8 @@ new Promise((resolve, reject) => {
     });
   }
 
-  constructor(private httpClient: HttpClient, public fb: FormBuilder, private router: Router, private upperCasePipe: UpperCasePipe ) {}
+  constructor(private httpClient: HttpClient, public fb: FormBuilder, private router: Router, private upperCasePipe: UpperCasePipe) {
+  }
 
   codebarForm = this.fb.group({
     categoryName: ['', [Validators.required]],
@@ -130,7 +127,7 @@ new Promise((resolve, reject) => {
     this.uppercaseParams = this.upperCasePipe.transform(this.codebarForm.value.categoryName)
     this.router.navigate(
       ['/map'],
-      { queryParams: { search:  this.uppercaseParams } }
+      {queryParams: {search: this.uppercaseParams}}
     );
     if (!this.codebarForm.valid) {
       false;
@@ -153,7 +150,7 @@ new Promise((resolve, reject) => {
         this.audio.src = "../assets/Apple-Sound.mp4";
         this.audio.load();
         this.audio.play();
-        this.product = data.products[0];
+        this.product = data.products[0] ?? null;
         this.toggle3 = false;
       }
       // @ts-ignore
@@ -161,28 +158,27 @@ new Promise((resolve, reject) => {
 
       this.product = data.products[0];
       this.productAr = {
-        marque: this.product.brands,
+        marque: this.product.brands ?? null,
         packaging: this.product.packaging,
         image: this.product.image_front_small_url
       }
-
     });
 
-    if (this.productAr == null) {
-      this.toggle3 = true;
-    } else {
+    if (this.productAr == null || this.productAr.brands == null) {
       this.toggle3 = false;
+    } else {
+      this.toggle3 = true;
     }
 
   }
 
-displayBin(data:any){
-console.log(data.indexOf('Métal') > -1);
-console.log(data.indexOf('Plastique') > -1);
-console.log(this.data)
+  displayBin(data: any) {
+    console.log(data.indexOf('Métal') > -1);
+    console.log(data.indexOf('Plastique') > -1);
+    console.log(this.data)
 
 
-}
+  }
 
 }
 

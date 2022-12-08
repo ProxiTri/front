@@ -17,7 +17,7 @@
         <div class="wrap">
           <div class="name-section" [style.display]="toggle6 ? 'flex' : 'none'">
             <div class="name-title">
-              <p id="nameTitle">NOM :   {{ productAr.marque }} </p>
+              <p id="nameTitle" *ngIf="productAr.marque != null">NOM : {{ productAr.marque }} </p>
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@
       <div class="line"></div>
       <div class="right-section">
 
-        <button class="btnView3 bg-green" id="verre" (click)="displayBin(productAr.packaging)"><p>Afficher les bennes à verre pour mon {{ productAr.marque }} </p>
+        <button class="btnView3 bg-green" id="verre" (click)="displayBin(productAr.packaging)"><p *ngIf="productAr.marque != null">Afficher les bennes à verre pour mon {{ productAr.marque }} </p>
 
           <img src="assets/img/icons8-broken-bottle-96.png" alt=""></button>
         <button class="btnView3 bg-blue" (click)="again()" id="plastic"><p>Scanner un autre produit </p><img
