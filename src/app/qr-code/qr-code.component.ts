@@ -114,7 +114,6 @@ export class QrCodeComponent implements AfterViewInit {
     this.isSubmitted = true;
     if (!this.codebarForm.valid) {
       false;
-    } else {
     }
   }
 
@@ -147,11 +146,8 @@ export class QrCodeComponent implements AfterViewInit {
         image: this.product.image_front_small_url
       }
 
-    })
-    // this.isSubmitted = true;
-    // if (!this.productForm.valid) {
-    //   false;
-    // }
+    });
+
     if (this.productAr == null) {
       this.toggle3 = true;
     } else {

@@ -46,22 +46,36 @@ body {
 
 }
 
+section {
+  width: 100%;
+  background: url("../../assets/img/css-wave.png") no-repeat/cover;
+}
 .div-cam {
   display: flex;
   flex-direction: column;
+  padding: 2rem;
   width: 100%;
-  height: 100vh;
-  margin-top: 4rem;
-
+  color: white;
+  background: url("../../assets/img/css-wave.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   .camera {
-    border-radius: .3rem;
-
-    video {
-      border-radius: 1rem !important;
-    }
+    width: 60%;
+   h1{
+     text-align: center;
+     color: white;
+     text-transform: uppercase;
+     font-size: 2rem;
+     margin-bottom: 1rem;
+   }
   }
 }
 
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .box {
   width: 100%;
@@ -272,7 +286,7 @@ body {
 
 .overlay {
   margin: 0 auto;
-  height: 450px;
+  height: 100%;
 }
 
 .overlay:target {
@@ -329,29 +343,20 @@ h1 {
 .title-popup {
   width: 100%;
   display: flex;
-  margin-top: -4.5rem
-}
-
-.name-section {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 1vh;
-  flex-wrap: wrap;
+  margin-bottom: 1rem;
 }
 
 .category-section {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 1vh;
+  margin-bottom: 2rem;
 }
 
 .img-section {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 4vh;
   border-radius: 6px;
 }
 
@@ -376,7 +381,6 @@ h1 {
   width: 0.5%;
   background-color: #0cad7d;
   border-radius: 3px;
-  height: 200px;
 }
 
 .category-container {
@@ -384,9 +388,7 @@ h1 {
   background-color: white;
   color: #0CAD7D;
   text-align: center;
-  border-radius: 10px;
-  box-shadow: 0px 2px teal;
-  box-shadow: violet;
+
 }
 
 .category-content {
@@ -420,11 +422,15 @@ h1 {
   margin-top: 30px;
 }
 
-.name-title,
-.category-title {
-  width: 100%;
-  text-align: center;
+.name-title {
+  margin-bottom: 1rem;
 }
+
+//.name-title,
+//.category-title {
+//  width: 100%;
+//  text-align: center;
+//}
 
 #nameTitle,
 #categoryTitle {
@@ -479,15 +485,15 @@ h1 {
   }
 
   .div-cam {
-    height: 530px;
+   .camera {
+     width: 100%;
+   }
   }
 }
 
 
 @media screen and (max-width: 1100px) {
-  .camera {
-    width: 350px;
-  }
+
   #popup1 {
     width: 100% !important;
   }
@@ -507,14 +513,43 @@ h1 {
   .div-info {
     margin-top: 0;
   }
-}
+  .formular {
+    margin-bottom: 4rem;
+  }
 
+  // POPUP
+
+  #popup1 {
+    flex-direction: column;
+    padding: 1rem 0;
+    .left-section{
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+    .right-section {
+      width: 100%;
+      .btnView3 {
+        width: 98%;
+      }
+    }
+  }
+  .div-cam {
+    padding: .5rem;
+  }
+
+}
+@media screen and (max-width: 500px) {
+  .form {
+    width: 90%;
+    text-align: center;
+  }
+  .formular {
+    margin-bottom: 4rem;
+  }
+}
 @media screen and (max-width: 360px) {
   .img-icon {
     display: none;
-  }
-  .div-cam {
-    height: 330px;
   }
 }
 
