@@ -10,7 +10,7 @@ export class HomepageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(sessionStorage.getItem('username'));
+    console.log(sessionStorage);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-actu',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActuComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
+  ngOnInit(): void {
+    console.log(sessionStorage.getItem('name'));
+  }
+
+  get() {
+    return sessionStorage.getItem('firstname');
+  }
 }

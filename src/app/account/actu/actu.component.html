@@ -1,25 +1,23 @@
 <div class="top-account">
   <div class="left-top">
-    <h1>Bonjour User</h1>
+    <h1>Bonjour {{get()}}</h1>
+
     <div class="grpBtn">
-      <a routerLink="/map" class="btn-yellow"><i class="fa-solid fa-location-dot"></i> Trouver des bennes près de chez
+      <a routerLink="/map"><i class="fa-solid fa-location-dot"></i> Trouver des bennes près de chez
         vous !</a>
+      <a routerLink="/logout"><i class="fa-solid fa-right-from-bracket"></i> Se déconnecter</a>
     </div>
   </div>
   <div class="right-top">
     <img class="actu-img-top top-slide" src="assets/img/img-slider-3.png" alt="">
     <div class="div-text-actu top-slide">
       <h3 class="title-actu top-slide">Actu à la une</h3>
-      <p class="text-actu top-slide">Un milliard d’euros pour une Méditerranée « plus verte » ENVIRONNEMENT Ce nouveau
+      <p class="text-actu top-slide"><span class="title-article">Un milliard d’euros pour une Méditerranée « plus verte » : </span>Ce
+        nouveau
         fonds d’investissement a été acté lors du congrès « Méditerranée du futur », congrès qui s’est déroulé à
         Marseille, où il siégera</p>
       <a href="https://www.20minutes.fr/planete/environnement/4013702-20221207-milliard-euros-mediterranee-plus-verte"
          target="_blank" class="btn-more">En savoir plus <i class="fa-solid fa-arrow-right-long"></i></a>
     </div>
-    <!--    <div class="pagination">-->
-    <!--      <span class="pag1 astuces-slide active" id="pagination" appDemo></span>-->
-    <!--      <span class="pag2 astuces-slide" appDemo></span>-->
-    <!--      <span class="pag3 astuces-slide" appDemo></span>-->
-    <!--    </div>-->
   </div>
 </div>

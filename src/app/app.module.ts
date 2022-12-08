@@ -30,6 +30,7 @@ import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
 import { RegisterComponent } from './register/register.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     DemoDirective,
     QrCodeComponent,
     RegisterComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,20 +23,20 @@ export class AstucesComponent implements OnInit {
     navSpeed: 700,
     items: 1,
     navText: ['', ''],
-    // responsive: {
-    //   0: {
-    //     items: 1
-    //   },
-    //   400: {
-    //     items: 1
-    //   },
-    //   740: {
-    //     items: 1
-    //   },
-    //   940: {
-    //     items: 1
-    //   }
-    // },
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 1
+      }
+    },
     nav: false
   }
 
