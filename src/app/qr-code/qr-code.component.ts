@@ -66,6 +66,13 @@ export class QrCodeComponent implements AfterViewInit {
         packaging: this.product.packaging ?? null,
         image: this.product.image_front_small_url ?? null
       }
+
+      if (this.productAr.brands == null || this.productAr.brands == "") {
+        this.toggle5 = true;
+      } else {
+        this.toggle5 = false;
+      }
+
       if (this.productAr.packaging == null || this.productAr.packaging == "") {
         this.toggle5 = true;
       } else {

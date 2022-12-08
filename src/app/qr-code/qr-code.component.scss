@@ -50,6 +50,7 @@ section {
   width: 100%;
   //background: url("../../assets/img/css-wave-bis.jpg") no-repeat/cover;
 }
+
 .div-cam {
   display: flex;
   flex-direction: column;
@@ -59,15 +60,17 @@ section {
   background: url("../../assets/img/mesh-424.png");
   background-repeat: no-repeat;
   background-size: cover;
+
   .camera {
     width: 60%;
-   h1{
-     text-align: center;
-     color: white;
-     text-transform: uppercase;
-     font-size: 2rem;
-     margin-bottom: 1rem;
-   }
+
+    h1 {
+      text-align: center;
+      color: white;
+      text-transform: uppercase;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
   }
 }
 
@@ -106,6 +109,11 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: .5s;
+}
+
+.btnView3:hover {
+  opacity: 80%;
 }
 
 .btnView {
@@ -296,12 +304,12 @@ section {
 
 #popup1,
 #popup2 {
-  background: rgba( 255, 255, 255, 0.75 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 6px );
-  -webkit-backdrop-filter: blur( 4px );
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border: 1px solid rgba(255, 255, 255, 0.18);
   width: 80%;
   text-align: left;
   display: flex;
@@ -487,9 +495,9 @@ h1 {
   }
 
   .div-cam {
-   .camera {
-     width: 100%;
-   }
+    .camera {
+      width: 100%;
+    }
   }
 }
 
@@ -524,12 +532,15 @@ h1 {
   #popup1 {
     flex-direction: column;
     padding: 1rem 0;
-    .left-section{
+
+    .left-section {
       margin-bottom: 2rem;
       width: 100%;
     }
+
     .right-section {
       width: 100%;
+
       .btnView3 {
         width: 98%;
       }
@@ -540,6 +551,7 @@ h1 {
   }
 
 }
+
 @media screen and (max-width: 500px) {
   .form {
     width: 90%;
@@ -549,6 +561,7 @@ h1 {
     margin-bottom: 4rem;
   }
 }
+
 @media screen and (max-width: 360px) {
   .img-icon {
     display: none;
