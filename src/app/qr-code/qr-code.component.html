@@ -1,48 +1,51 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+<section>
+  <!-- content here -->
+  <div class="curve"></div>
+</section>
+
 <div class="fullPage">
-
   <div class="div-cam">
-    <div id="popup1" class="overlay" [style.display]="toggle7 ? 'flex' : 'none'" *ngIf="productAr != null && productAr!= undefined || productCode != null">
-      <div class="title-popup">
-        <h1>MON PRODUIT RECYCLABLE</h1>
-      </div>
-
+    <div id="popup1" class="overlay" [style.display]="toggle7 ? 'flex' : 'none'"
+         *ngIf="productAr != null && productAr!= undefined || productCode != null">
       <div class="left-section">
-        <div class="name-section" [style.display]="toggle6 ? 'flex' : 'none'">
-          <div class="name-title">
-            <p id="nameTitle">NOM :</p>
+        <div class="title-popup">
+          <h1>MON PRODUIT RECYCLABLE</h1>
+        </div>
+        <div class="wrap">
+          <div class="name-section" [style.display]="toggle6 ? 'flex' : 'none'">
+            <div class="name-title">
+              <p id="nameTitle">NOM :   {{ productAr.marque }} </p>
+            </div>
           </div>
-          <div class="name-container">
-            {{ productAr.marque }} <br>
+        </div>
+
+        <div class="wrap">
+          <div class="category-section" [style.display]="toggle5 ? 'none' : 'flex'">
+            <div class="category-container">
+              <div class="category-title" [style.display]="toggle5 ? 'none' : 'flex'">
+                <p id="categoryTitle">CATEGORIE : {{ productAr.packaging }} </p>
+              </div>
+            </div>
           </div>
         </div>
 
         <form [formGroup]="codebarForm" (ngSubmit)="onSubmit()">
-        <div class="column-6 form-select" [style.display]="toggle5 ? 'flex' : 'none'">
-          <select (change)="changeCategory($event)" formControlName="categoryName">
-            <option value="">Choisir Un Conditionnement</option>
-            <option *ngFor="let condit of Condit" [ngValue]="condit">
-              {{ condit }}
-            </option>
-          </select>
-          <button type="submit" class="btn btn-danger btn-lg btn-block">
-            Submit
-          </button>
-        </div>
+          <div class="column-6 form-select" [style.display]="toggle5 ? 'flex' : 'none'">
+            <select (change)="changeCategory($event)" formControlName="categoryName">
+              <option value="">Choisir Un Conditionnement</option>
+              <option *ngFor="let condit of Condit" [ngValue]="condit">
+                {{ condit }}
+              </option>
+            </select>
+            <button type="submit" class="btn btn-danger btn-lg btn-block">
+              Submit
+            </button>
+          </div>
         </form>
 
-        <div class="category-section" [style.display]="toggle5 ? 'none' : 'flex'">
-          <div class="category-container">
-            <div class="category-title" [style.display]="toggle5 ? 'none' : 'flex'">
-              <p id="categoryTitle">CATEGORIE : </p>
-            </div>
-            <div class="category-content">
-            {{ productAr.packaging }} <br>
-          </div>
-          </div>
-        </div>
 
         <div class="img-section">
           <img src="{{ productAr.image }}">
@@ -50,11 +53,8 @@
       </div>
 
       <div class="line"></div>
-
       <div class="right-section">
-
         <button class="btnView3 bg-green" id="verre"><p>Afficher les bennes à verre pour mon {{ productAr.marque }} </p>
-
           <img src="assets/img/icons8-broken-bottle-96.png" alt=""></button>
         <button class="btnView3 bg-blue" (click)="again()" id="plastic"><p>Scanner un autre produit </p><img
           src="assets/img/qr-code.png" alt=""></button>
@@ -67,25 +67,38 @@
         </svg>
       </div>
     </div>
-    <div class="camera">
-      <div class="progress-spinner" role="progressbar" [style.display]="toggle4 ? 'flex' : 'none'">
-        <svg focusable="false" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100">
-          <circle cx="50%" cy="50%" r="45"></circle>
-        </svg>
+    <div class="wrap">
+      <div class="camera">
+        <div class="progress-spinner" role="progressbar" [style.display]="toggle4 ? 'flex' : 'none'">
+          <svg focusable="false" preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100">
+            <circle cx="50%" cy="50%" r="45"></circle>
+          </svg>
+        </div>
+        <div class="title" [style.display]="toggle4 ? 'flex' : 'none'">
+          <h1>C'est parti ! </h1>
+          <!--          <img src="assets/img/icons8-lecteur-de-codes-barres-64.png">-->
+        </div>
+        <barcode-scanner-livestream [type]="['ean']"
+                                    (valueChanges)="onValueChanges($event)"></barcode-scanner-livestream>
       </div>
-      <barcode-scanner-livestream [type]="['ean','upc']" (valueChanges)="onValueChanges($event)"></barcode-scanner-livestream>
+
     </div>
   </div>
 
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit2()">
-    <div class="formular">
-  <p id="form-manual">Entrez votre codebar manuellement</p>
-  <div class="inputContainer">
-  <input class="form" type="text" formControlName="productName" placeholder="exemple : 3168930159896">
-</div>
-<button type="submit" id="btnSearch" class="btnView bg-yellow text-black" id="manual-search"><p>Rechercher</p></button>
-</div>
-</form>
+  <section>
+    <div class="wrap search-manual">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit2()">
+        <div class="formular">
+          <p id="form-manual">Entrez votre codebar manuellement</p>
+          <div class="inputContainer">
+            <input class="form" type="text" formControlName="productName" placeholder="exemple : 3168930159896">
+          </div>
+          <button type="submit" id="btnSearch" class="btnView bg-yellow text-black" id="manual-search"><p>Rechercher</p>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
 
 
   <div class="div-info" *ngIf="productAr == null && productAr == undefined">
