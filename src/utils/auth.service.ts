@@ -18,8 +18,13 @@ export class AuthService {
     return this.http.post<any>(this.baseUrl + 'login', {username, password});
   }
 
-  register(email: ɵValue<FormControl<string | null>> | undefined, password: ɵValue<FormControl<string | null>> | undefined) {
-    return this.http.post<any>(this.baseUrl + 'register', {email, password})
+  register(
+    email: ɵValue<FormControl<string | null>> | undefined,
+    password: ɵValue<FormControl<string | null>> | undefined,
+    firstname: ɵValue<FormControl<string | null>> | undefined,
+    name: ɵValue<FormControl<string | null>> | undefined
+  ) {
+    return this.http.post<any>(this.baseUrl + 'register', {email, password, firstname, name})
   }
 
   getAccessToken() {

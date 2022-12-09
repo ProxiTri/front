@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
     }, 1500);
 
 
-    this.data = this.authS.register(this.registerForm.value.mail, this.registerForm.value.password).subscribe((data: any) => {
+    this.data = this.authS.register(this.registerForm.value.mail, this.registerForm.value.password, this.registerForm.value.lastname, this.registerForm.value.name).subscribe((data: any) => {
       this.router.navigate(['/login']);
     }, (error: { error: { message: string | undefined; }; }) => {
       this.errorForm = error.error.message;
