@@ -18,7 +18,7 @@ export class ExternalService {
   }
 
   getWeatherFromGeoPoint(lat: number, long: number) {
-    return this.http.get<any>(`http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=${this.WEATHER_API_KEY}`);
+    return this.http.get<any>(`https://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=${this.WEATHER_API_KEY}`);
   }
 }
 
