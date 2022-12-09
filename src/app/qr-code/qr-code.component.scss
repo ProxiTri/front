@@ -461,6 +461,12 @@ video{
   align-items: center;
   justify-content: center;
   margin-top: 10px;
+  select {
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    border: none;
+  }
 }
 
 #manual-search {
@@ -471,7 +477,9 @@ video{
 .inputContainer {
   width: 100%;
 }
-
+.redWarning{
+  color: #D8334A;
+}
 
 // RESPONSIVE
 

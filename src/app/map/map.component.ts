@@ -1,5 +1,5 @@
 // Ajouter OnInit pour effectuer des opérations à l'initialisation du composant.
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import 'leaflet.markercluster';
@@ -70,19 +70,55 @@ export class MapComponent implements OnInit {
 
 
   // CHARGEMENT DE LA CARTE AVEC TOUS LES POINTS
-  ngOnInit() {
 
+  ngOnInit() {
     // GEOLOACTION DE LA PERSONNE
     navigator.geolocation.getCurrentPosition((position: any) => {
       this.departCoordonate = [position.coords.latitude, position.coords.longitude];
     });
 
-    this.authS.getAccessToken()
+    this.map = L.map('map').setView([46.160329, -1.151139], 14);
+          this.router.queryParams.subscribe(params => {
+            if(params['search']){
+              if (params['search'] == "VERRE") {
+                this.category = params['search']
+                this.iconUrl = 'http://localhost:4200/assets/img/icons8-broken-bottle-96.png';
+                this.filterWaste(this.iconUrl, this.category)
+              } else {
+                // console.log("produit en verre non recconu")
+              }
+
+              if (params['search'] == "PLASTIQUE") {
+                this.category = params['search'];
+                this.iconUrl = 'http://localhost:4200/assets/img/icons8-plastic-bottle-96.png';
+                this.category="CS";
+                this.filterWaste(this.iconUrl, this.category)
+              } else {
+                // console.log("produit en plastique non recconu")
+              }
+
+              if (params['search'] == "PAPIER") {
+                this.category = params['search']
+                this.iconUrl = 'http://localhost:4200/assets/img/icons8-paper-waste-96.png';
+                this.filterWaste(this.iconUrl, this.category)
+              } else {
+                // console.log("produit en papier non recconu")
+              }
+
+              if (params['search'] == "ORDURES MENAGERES") {
+                this.category = params['search']
+                this.iconUrl = 'http://localhost:4200/assets/img/waste.png';
+                this.category="OM";
+                this.filterWaste(this.iconUrl, this.category)
+              } else {
+                // console.log("ordures ménagères non recconues")
+              }
+            }else{
+              this.authS.getAccessToken()
       .then((data_token: any) => {
         const markers = L.markerClusterGroup();
         // SET DE LA CARTE AVEC UNE VUE PAR DEFAUT
         // @ts-ignore
-        this.map = L.map('map').setView([46.160329, -1.151139], 14);
         this.wasteS.getWastes(data_token.token).subscribe((data: any) => {
           this.checkAnyWaste(data, markers);
         });
@@ -102,6 +138,9 @@ export class MapComponent implements OnInit {
           attribution: 'Map'
         }).addTo(this.map);
       })
+            }
+          })
+
 
 
     this.weatherPollutionAPI(46.160329, -1.151139);
@@ -201,6 +240,8 @@ export class MapComponent implements OnInit {
   };
 
   // FILTRE LES POUBELLES DYNAMIQUEMENT
+
+
   filterWaste(iconUrl: string, wasteType: string) {
     const markers = L.markerClusterGroup();
 
@@ -255,6 +296,8 @@ export class MapComponent implements OnInit {
                 .bindPopup(pop))
             }
             this.map.addLayer(markers);
+                console.log("okkk")
+
           });
         });
       })
