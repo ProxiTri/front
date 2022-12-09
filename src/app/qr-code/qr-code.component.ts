@@ -96,7 +96,7 @@ export class QrCodeComponent implements AfterViewInit {
         this.toggle3 = true;
       }
       if(this.productAr.packaging.indexOf('plastique') > -1 || this.productAr.packaging.indexOf('Plastique') > -1 || this.productAr.packaging.indexOf('PLASTIQUE') > -1 ){
-          this.uppercaseParams = "PLASTIQUE"
+        this.uppercaseParams = "PLASTIQUE"
         this.togglePla = true;
         this.toggleVerre = false;
         this.togglePapier = false;
@@ -138,30 +138,36 @@ export class QrCodeComponent implements AfterViewInit {
       this.toggleVerre = false;
       this.togglePapier = false;
       this.toggleOm = false;
+      this.uppercaseParams = "PLASTIQUE";
+      console.log("PLASTIQUE")
 
     }else if(event.target.value.indexOf('verre') > -1 || event.target.value.indexOf('Verre') > -1 || event.target.value.indexOf('VERRE') > -1){
       this.toggleVerre = true;
       this.togglePla = false;
       this.togglePapier = false;
       this.toggleOm = false;
+      this.uppercaseParams = "VERRE";
+      console.log("VERRE")
+
 
     }else if(event.target.value.indexOf('papier') > -1 || event.target.value.indexOf('Papier') > -1 || event.target.value.indexOf('PAPIER') > -1 || event.target.value.indexOf('Papiers') > -1 || event.target.value.indexOf('papiers') > -1 || event.target.value.indexOf('PAPIERS') > -1){
       this.togglePapier = true;
       this.togglePla = false;
       this.toggleVerre = false;
       this.toggleOm = false;
+      this.uppercaseParams = "PAPIER";
+      console.log("PAPIER")
+
     }else{
       this.uppercaseParams = "ORDURES MENAGERES"
       this.toggleOm = true;
       this.togglePla = false;
       this.toggleVerre = false;
       this.togglePapier = false;
+      this.uppercaseParams = "ORDURES MENAGERES";
+      console.log("ORDURES MENAGERES")
+
     }
-
-
-
-
-
 
     this.categoryName?.setValue(event.target.value, {
       onlySelf: true,
@@ -230,8 +236,8 @@ export class QrCodeComponent implements AfterViewInit {
   }
 
   displayBin(){
-    if (!this.product.packaging) {
-      this.uppercaseParams = this.upperCasePipe.transform(this.codebarForm.value.categoryName)
+    if (this.product.packaging == "") {
+      console.log(this.uppercaseParams)
       this.router.navigate(
         ['/map'],
         { queryParams: { search:  this.uppercaseParams} }
@@ -239,34 +245,34 @@ export class QrCodeComponent implements AfterViewInit {
       if (!this.codebarForm.valid) {
         false;
       }
-    }
+    } else if (this.product.packaging != ""){
 
-    if(this.productAr.packaging.indexOf('plastique') > -1 || this.productAr.packaging.indexOf('Plastique') > -1 || this.productAr.packaging.indexOf('PLASTIQUE') > -1 ){
-      this.uppercaseParams = "PLASTIQUE"
-      this.router.navigate(
-        ['/map'],
-        { queryParams: { search:  this.uppercaseParams} }
-      );
-    }else if(this.productAr.packaging.indexOf('verre') > -1 || this.productAr.packaging.indexOf('Verre') > -1 || this.productAr.packaging.indexOf('VERRE') > -1){
-      this.uppercaseParams = "VERRE"
-      this.router.navigate(
-        ['/map'],
-        { queryParams: { search:  this.uppercaseParams} }
-      );
-    }else if(this.productAr.packaging.indexOf('papier') > -1 || this.productAr.packaging.indexOf('Papier') > -1 || this.productAr.packaging.indexOf('PAPIER') > -1 || this.productAr.packaging.indexOf('Papiers') > -1 || this.productAr.packaging.indexOf('papiers') > -1 || this.productAr.packaging.indexOf('PAPIERS') > -1){
-      this.uppercaseParams = "PAPIER"
-      this.router.navigate(
-        ['/map'],
-        { queryParams: { search:  this.uppercaseParams} }
-      );
-    }else{
-      this.uppercaseParams = "ORDURES MENAGERES"
-      this.router.navigate(
-        ['/map'],
-        { queryParams: { search:  this.uppercaseParams} }
-      );
-    }
-  }
+      if(this.productAr.packaging.indexOf('plastique') > -1 || this.productAr.packaging.indexOf('Plastique') > -1 || this.productAr.packaging.indexOf('PLASTIQUE') > -1 ){
+        this.uppercaseParams = "PLASTIQUE"
+        this.router.navigate(
+          ['/map'],
+          { queryParams: { search:  this.uppercaseParams} }
+        );
+      }else if(this.productAr.packaging.indexOf('verre') > -1 || this.productAr.packaging.indexOf('Verre') > -1 || this.productAr.packaging.indexOf('VERRE') > -1){
+        this.uppercaseParams = "VERRE"
+        this.router.navigate(
+          ['/map'],
+          { queryParams: { search:  this.uppercaseParams} }
+        );
+      }else if(this.productAr.packaging.indexOf('papier') > -1 || this.productAr.packaging.indexOf('Papier') > -1 || this.productAr.packaging.indexOf('PAPIER') > -1 || this.productAr.packaging.indexOf('Papiers') > -1 || this.productAr.packaging.indexOf('papiers') > -1 || this.productAr.packaging.indexOf('PAPIERS') > -1){
+        this.uppercaseParams = "PAPIER"
+        this.router.navigate(
+          ['/map'],
+          { queryParams: { search:  this.uppercaseParams} }
+        );
+      }else{
+        this.uppercaseParams = "ORDURES MENAGERES"
+        this.router.navigate(
+          ['/map'],
+          { queryParams: { search:  this.uppercaseParams} }
+        );
+      }
+    }}
 
 }
 
