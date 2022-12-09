@@ -19,6 +19,7 @@ import { MapComponent } from './map/map.component';
 import { PollutionComponent } from './pollution/pollution.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { UpperCasePipe } from '@angular/common';
 
 import { LoginComponent } from './login/login.component';
 import { InfosComponent } from './pollution/infos/infos.component';
@@ -28,7 +29,9 @@ import {BarcodeScannerLivestreamModule} from "ngx-barcode-scanner";
 import { RegisterComponent } from './register/register.component';
 import { CommuneComponent } from './commune/commune.component';
 import { ContactComponent } from './contact/contact.component';
-
+import {CarouselModule} from "ngx-owl-carousel-o";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import { ContactComponent } from './contact/contact.component';
     QrCodeComponent,
     RegisterComponent,
     CommuneComponent,
-    ContactComponent
+    ContactComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,10 +65,12 @@ import { ContactComponent } from './contact/contact.component';
     HttpClientModule,
     BarcodeScannerLivestreamModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CarouselModule,
+    BrowserAnimationsModule
   ],
   providers: [
-
+    UpperCasePipe
   ],
   bootstrap: [AppComponent]
 })

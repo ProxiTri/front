@@ -2,10 +2,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
-import  'leaflet.markercluster';
+import 'leaflet.markercluster';
 import {ActivatedRoute} from "@angular/router";
 import {AuthService} from "../../utils/auth.service";
 import {WasteService} from "../../utils/waste.service";
+import {range, filter, map} from 'rxjs';
 import {ExternalService} from "../../utils/external.service";
 
 
@@ -23,15 +24,15 @@ export class MapComponent implements OnInit {
   /////////////////////// VARIABLES ///////////////////////////
   @ViewChild('weather') weather: ElementRef<any> | undefined;
   weatherObject = {
-    city: <string> '',
-    region: <string> '',
-    country: <string> '',
-    image: <string> '',
-    temperature: <string> '',
+    city: <string>'',
+    region: <string>'',
+    country: <string>'',
+    image: <string>'',
+    temperature: <string>'',
   };
   pollutionObject = {
-    aqius: <string> '',
-    mainus: <string> ''
+    aqius: <string>'',
+    mainus: <string>''
   }
   indice: any;
   infoAqius: string = '';
@@ -50,6 +51,9 @@ export class MapComponent implements OnInit {
   // LE NOM DU DEPART
   departLabel: any;
 
+  // URL DES ICONES
+  iconUrl: any
+  category: any
 
   // PROPOSITIONS D'ARRIVEE
   propositions: any;
@@ -67,6 +71,7 @@ export class MapComponent implements OnInit {
 
   // CHARGEMENT DE LA CARTE AVEC TOUS LES POINTS
   ngOnInit() {
+
     // GEOLOACTION DE LA PERSONNE
     navigator.geolocation.getCurrentPosition((position: any) => {
       this.departCoordonate = [position.coords.latitude, position.coords.longitude];
@@ -97,8 +102,11 @@ export class MapComponent implements OnInit {
           attribution: 'Map'
         }).addTo(this.map);
       })
+
+
     this.weatherPollutionAPI(46.160329, -1.151139);
   }
+
 
   checkAnyWaste(data: any, markers: any, iconPlace?: any) {
     data.forEach((ben: { wasteType: { customerDesignation: string; }; localisationStreet: string; commune: { name: string; }; localisationLatitude: number; localisationLongitude: number; }) => {
@@ -294,7 +302,7 @@ export class MapComponent implements OnInit {
   }
 
   departProp() {
-   this.externalS.searchAdress(this.departLabel).subscribe((data: any) => {
+    this.externalS.searchAdress(this.departLabel).subscribe((data: any) => {
       this.propositionsDepart = data.features;
       this.departCoordonate = [data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]];
     })
@@ -405,7 +413,5 @@ export class MapComponent implements OnInit {
     document.querySelector('#weather').classList.toggle('show');
   }
 }
-
-
 
 

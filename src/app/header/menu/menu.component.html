@@ -2,11 +2,23 @@
   <a routerLink="/"><i class="fa-solid fa-recycle"></i> Gains du recyclage </a>
   <a routerLink="/scan"><i class="fa-solid fa-barcode"></i> Scanner un produit </a>
   <a routerLink="/pollution"><i class="fa-solid fa-cloud"></i> Pollution </a>
-  <div>
-    <a routerLink="/map" class="btn-yellow"><i class="fa-solid fa-location-dot"></i> Trouver des bennes</a>
-    <a routerLink="/login" class="btn-blue"><i class="fa-regular fa-user"></i> Mon espace</a>
-  </div>
+
+    <div *ngIf="!isLogged">
+      <a routerLink="/map" class="btn-yellow"><i class="fa-solid fa-location-dot"></i> Trouver des bennes</a>
+      <!--    if local storage else-->
+      <a routerLink="/login" class="btn-blue"><i class="fa-regular fa-user"></i>
+        Mon espace</a>
+    </div>
+    <div *ngIf="isLogged">
+      <a routerLink="/map" class="btn-yellow"><i class="fa-solid fa-location-dot"></i> Trouver des bennes</a>
+      <a routerLink="/account" class="btn-blue"><i
+        class="fa-regular fa-user"></i> Mon espace</a>
+      <a href="https://api-proxitri.alexis-briet.fr/api_documentation" target="_blank" *ngIf="isAdmin" class="btn-blue"><i
+        class="fa-solid fa-database"></i> API</a>
+    </div>
 </section>
 <div class="menuMobileBtn">
   <i class="fa fa-bars" #menuButton *ngIf="mobile" (click)="mobileMenuToggle($event)"></i>
 </div>
+
+
