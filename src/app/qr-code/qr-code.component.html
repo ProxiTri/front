@@ -8,31 +8,31 @@
 
 <div class="fullPage">
   <div class="div-cam">
-    <div id="popup1" class="overlay" [style.display]="toggle7 ? 'flex' : 'none'"
-         *ngIf="productAr != null && productAr!= undefined || productCode != null">
+    <div id="popup1" class="overlay" [style.display]="toggle7 ? 'flex' : 'none'" *ngIf="productAr != null && productAr!= undefined">
       <div class="left-section">
         <div class="title-popup">
-          <h1>MON PRODUIT RECYCLABLE</h1>
+          <h1 *ngIf="this.product._id != ''">MON PRODUIT RECYCLABLE</h1>
+          <h1 *ngIf="this.product._id == ''">CODE-BARRE VIDE, MERCI D'ENTRER UN CODE-BARRE AU FORMAT VALIDE</h1>
+
         </div>
         <div class="wrap">
           <div class="name-section" [style.display]="toggle6 ? 'flex' : 'none'">
             <div class="name-title">
-              <p id="nameTitle" *ngIf="productAr.marque != null">NOM : {{ productAr.marque }} </p>
+              <p id="nameTitle" *ngIf="this.product._id != ''">NOM :   {{ productAr.marque }} </p>
             </div>
           </div>
         </div>
-
         <div class="wrap">
           <div class="category-section" [style.display]="toggle5 ? 'none' : 'flex'">
             <div class="category-container">
               <div class="category-title" [style.display]="toggle5 ? 'none' : 'flex'">
-                <p id="categoryTitle">CATEGORIE : {{ productAr.packaging }} </p>
+                <p id="categoryTitle" *ngIf="this.product._id != '' || this.product.lenght > 0">CATEGORIE : {{ productAr.packaging }} </p>
               </div>
             </div>
           </div>
         </div>
 
-        <form [formGroup]="codebarForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="codebarForm" (ngSubmit)="onSubmit2()">
           <div class="column-6 form-select" [style.display]="toggle5 ? 'flex' : 'none'">
             <select (change)="changeCategory($event)" formControlName="categoryName">
               <option value="">Choisir Un Conditionnement</option>
@@ -40,26 +40,20 @@
                 {{ condit }}
               </option>
             </select>
-            <button type="submit" class="btn btn-danger btn-lg btn-block">
-              Submit
-            </button>
           </div>
         </form>
 
 
-        <div class="img-section">
+        <div class="img-section" *ngIf="productAr != null && productAr != undefined">
           <img src="{{ productAr.image }}">
         </div>
       </div>
 
       <div class="line"></div>
       <div class="right-section">
-
-        <button class="btnView3 bg-green" id="verre" (click)="displayBin(productAr.packaging)"><p *ngIf="productAr.marque != null">Afficher les bennes à verre pour mon {{ productAr.marque }} </p>
-
-          <img src="assets/img/icons8-broken-bottle-96.png" alt=""></button>
-        <button class="btnView3 bg-blue" (click)="again()" id="plastic"><p>Scanner un autre produit </p><img
-          src="assets/img/qr-code.png" alt=""></button>
+        <button class="btnView3 bg-green" *ngIf="productAr.marque != null && productAr != undefined" id="verre" (click)="displayBin()"><p>Afficher les bennes à<p [style.display]="togglePla ? 'block' : 'none'">Plastique</p><p [style.display]="toggleVerre ? 'block' : 'none'">Verre</p><p [style.display]="togglePapier ? 'block' : 'none'">Papier</p><p [style.display]="toggleOm ? 'block' : 'none'">Ordures ménagères</p> <p>pour mon {{ productAr.marque }}</p>
+          <img [style.display]="togglePla ? 'block' : 'none'" src="http://localhost:4200/assets/img/icons8-plastic-bottle-96.png" alt=""><img [style.display]="toggleVerre ? 'block' : 'none'" src="http://localhost:4200/assets/img/icons8-broken-bottle-96.png" alt=""><img [style.display]="togglePapier ? 'block' : 'none'" src="http://localhost:4200/assets/img/icons8-paper-waste-96.png" alt=""><img [style.display]="toggleOm ? 'block' : 'none'" src="http://localhost:4200/assets/img/waste.png" alt=""></button>
+        <button class="btnView3 bg-blue" (click)="again()" id="plastic"><p>Scanner un autre produit </p><img src="assets/img/qr-code.png" alt=""></button>
       </div>
     </div>
     <div class="overlay" id="popup2" [style.display]="toggle3 ? 'flex' : 'none'">
@@ -90,7 +84,11 @@
     <div class="wrap search-manual">
       <form [formGroup]="productForm" (ngSubmit)="onSubmit2()">
         <div class="formular">
-          <p id="form-manual">Entrez votre codebar manuellement</p>
+          <p id="form-manual" [style.display]="toggle9 ? 'block' : 'none'">Entrez votre codebar manuellement</p>
+          <p id="form-manual" [style.display]="toggle9 ? 'none' : 'block'" style="color: red;">Barcode invalide, réessayez</p>
+          <button class="btnView3 bg-blue" (click)="again()" id="plastic" [style.display]="toggle9 ? 'none' : 'flex'" style="   width: 400px; height: 100px; margin-top: 10px;"><p>Scanner un autre produit </p><img style="width: 50px;" src="assets/img/qr-code.png" alt=""></button>
+
+
           <div class="inputContainer">
             <input class="form" type="text" formControlName="productName" placeholder="exemple : 3168930159896">
           </div>
